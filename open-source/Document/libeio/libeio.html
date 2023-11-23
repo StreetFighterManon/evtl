@@ -1,0 +1,2127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0054)http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>libeio</title>
+	<meta name="description" content="Pod documentation for libeio">
+	<meta name="inputfile" content="(unknown)">
+	<meta name="outputfile" content="(unknown)">
+	<meta name="created" content="Wed Jan 20 09:10:13 2021">
+	<meta name="generator" content="Pod::Xhtml 1.61">
+<link rel="stylesheet" href="./libeio_files/pod.css"><style type="text/css">@charset "UTF-8";
+/*!
+ * jQuery contextMenu - Plugin for simple contextMenu handling
+ *
+ * Version: v2.9.2
+ *
+ * Authors: Björn Brala (SWIS.nl), Rodney Rehm, Addy Osmani (patches for FF)
+ * Web: http://swisnl.github.io/jQuery-contextMenu/
+ *
+ * Copyright (c) 2011-2020 SWIS BV and contributors
+ *
+ * Licensed under
+ *   MIT License http://www.opensource.org/licenses/mit-license
+ *
+ * Date: 2020-05-13T13:55:37.023Z
+ */
+@-webkit-keyframes cm-spin {
+  0% {
+    -webkit-transform: translateY(-50%) rotate(0deg);
+            transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translateY(-50%) rotate(359deg);
+            transform: translateY(-50%) rotate(359deg);
+  }
+}
+@keyframes cm-spin {
+  0% {
+    -webkit-transform: translateY(-50%) rotate(0deg);
+            transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translateY(-50%) rotate(359deg);
+            transform: translateY(-50%) rotate(359deg);
+  }
+}
+
+@font-face {
+  font-family: "context-menu-icons";
+  font-style: normal; 
+  font-weight: normal;
+}
+
+.context-menu-icon-add:before {
+  content: "\EA01";
+}
+
+.context-menu-icon-copy:before {
+  content: "\EA02";
+}
+
+.context-menu-icon-cut:before {
+  content: "\EA03";
+}
+
+.context-menu-icon-delete:before {
+  content: "\EA04";
+}
+
+.context-menu-icon-edit:before {
+  content: "\EA05";
+}
+
+.context-menu-icon-loading:before {
+  content: "\EA06";
+}
+
+.context-menu-icon-paste:before {
+  content: "\EA07";
+}
+
+.context-menu-icon-quit:before {
+  content: "\EA08";
+}
+
+.context-menu-icon::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 2em; 
+  font-family: "context-menu-icons";
+  font-size: 1em;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  color: #2980b9;
+  text-align: center;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.context-menu-icon.context-menu-hover:before {
+  color: #fff;
+}
+
+.context-menu-icon.context-menu-disabled::before {
+  color: #bbb;
+}
+
+.context-menu-icon.context-menu-icon-loading:before {
+  -webkit-animation: cm-spin 2s infinite;
+          animation: cm-spin 2s infinite;
+}
+
+.context-menu-icon.context-menu-icon--fa {
+  display: list-item;
+  font-family: inherit;
+  line-height: inherit;
+}
+.context-menu-icon.context-menu-icon--fa::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 2em; 
+  font-family: FontAwesome;
+  font-size: 1em;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  color: #2980b9;
+  text-align: center;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.context-menu-icon.context-menu-icon--fa.context-menu-hover:before {
+  color: #fff;
+}
+.context-menu-icon.context-menu-icon--fa.context-menu-disabled::before {
+  color: #bbb;
+}
+
+.context-menu-icon.context-menu-icon--fa5 {
+  display: list-item;
+  font-family: inherit;
+  line-height: inherit;
+}
+.context-menu-icon.context-menu-icon--fa5 i, .context-menu-icon.context-menu-icon--fa5 svg {
+  position: absolute;
+  top: .3em; 
+  left: .5em;
+  color: #2980b9;
+}
+.context-menu-icon.context-menu-icon--fa5.context-menu-hover > i, .context-menu-icon.context-menu-icon--fa5.context-menu-hover > svg {
+  color: #fff;
+}
+.context-menu-icon.context-menu-icon--fa5.context-menu-disabled i, .context-menu-icon.context-menu-icon--fa5.context-menu-disabled svg {
+  color: #bbb;
+}
+
+.context-menu-list {
+  position: absolute; 
+  display: inline-block;
+  min-width: 13em;
+  max-width: 26em;
+  padding: .25em 0;
+  margin: .3em;
+  font-family: inherit;
+  font-size: inherit;
+  list-style-type: none;
+  background: #fff;
+  border: 1px solid #bebebe;
+  border-radius: .2em;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+}
+
+.context-menu-item {
+  position: relative;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  padding: .2em 2em;
+  color: #2f2f2f;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; 
+  background-color: #fff;
+}
+
+.context-menu-separator {
+  padding: 0; 
+  margin: .35em 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.context-menu-item > label > input,
+.context-menu-item > label > textarea {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+      -ms-user-select: text;
+          user-select: text;
+}
+
+.context-menu-item.context-menu-hover {
+  color: #fff;
+  cursor: pointer; 
+  background-color: #2980b9;
+}
+
+.context-menu-item.context-menu-disabled {
+  color: #bbb;
+  cursor: default; 
+  background-color: #fff;
+}
+
+.context-menu-input.context-menu-hover {
+  color: #2f2f2f; 
+  cursor: default;
+}
+
+.context-menu-submenu:after {
+  position: absolute;
+  top: 50%;
+  right: .5em;
+  z-index: 1; 
+  width: 0;
+  height: 0;
+  content: '';
+  border-color: transparent transparent transparent #2f2f2f;
+  border-style: solid;
+  border-width: .25em 0 .25em .25em;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+/**
+ * Inputs
+ */
+.context-menu-item.context-menu-input {
+  padding: .3em .6em;
+}
+
+/* vertically align inside labels */
+.context-menu-input > label > * {
+  vertical-align: top;
+}
+
+/* position checkboxes and radios as icons */
+.context-menu-input > label > input[type="checkbox"],
+.context-menu-input > label > input[type="radio"] {
+  position: relative;
+  top: .12em; 
+  margin-right: .4em;
+}
+
+.context-menu-input > label {
+  margin: 0;
+}
+
+.context-menu-input > label,
+.context-menu-input > label > input[type="text"],
+.context-menu-input > label > textarea,
+.context-menu-input > label > select {
+  display: block;
+  width: 100%; 
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.context-menu-input > label > textarea {
+  height: 7em;
+}
+
+.context-menu-item > .context-menu-list {
+  top: .3em; 
+  /* re-positioned by js */
+  right: -.3em;
+  display: none;
+}
+
+.context-menu-item.context-menu-visible > .context-menu-list {
+  display: block;
+}
+
+.context-menu-accesskey {
+  text-decoration: underline;
+}</style><style type="text/css">.tooltipster-sidetip.tooltipster-shadow .tooltipster-box{border:none;border-radius:5px;background:#fff;-webkit-box-shadow:0 0 10px 6px rgba(0,0,0,0);box-shadow:0 0 10px 6px rgba(0,0,0,0)}.tooltipster-sidetip.tooltipster-shadow.tooltipster-bottom .tooltipster-box{margin-top:6px}.tooltipster-sidetip.tooltipster-shadow.tooltipster-left .tooltipster-box{margin-right:6px}.tooltipster-sidetip.tooltipster-shadow.tooltipster-right .tooltipster-box{margin-left:6px}.tooltipster-sidetip.tooltipster-shadow.tooltipster-top .tooltipster-box{margin-bottom:6px}.tooltipster-sidetip.tooltipster-shadow .tooltipster-content{color:#8d8d8d}.tooltipster-sidetip.tooltipster-shadow .tooltipster-arrow{height:6px;margin-left:-6px;width:12px}.tooltipster-sidetip.tooltipster-shadow.tooltipster-left .tooltipster-arrow,.tooltipster-sidetip.tooltipster-shadow.tooltipster-right .tooltipster-arrow{height:12px;margin-left:0;margin-top:-6px;width:6px}.tooltipster-sidetip.tooltipster-shadow .tooltipster-arrow-background{display:none}.tooltipster-sidetip.tooltipster-shadow .tooltipster-arrow-border{border:6px solid transparent}.tooltipster-sidetip.tooltipster-shadow.tooltipster-bottom .tooltipster-arrow-border{border-bottom-color:#fff}.tooltipster-sidetip.tooltipster-shadow.tooltipster-left .tooltipster-arrow-border{border-left-color:#fff}.tooltipster-sidetip.tooltipster-shadow.tooltipster-right .tooltipster-arrow-border{border-right-color:#fff}.tooltipster-sidetip.tooltipster-shadow.tooltipster-top .tooltipster-arrow-border{border-top-color:#fff}.tooltipster-sidetip.tooltipster-shadow.tooltipster-bottom .tooltipster-arrow-uncropped{top:-6px}.tooltipster-sidetip.tooltipster-shadow.tooltipster-right .tooltipster-arrow-uncropped{left:-6px}</style><style type="text/css">/* This is the core CSS of Tooltipster */
+
+/* GENERAL STRUCTURE RULES (do not edit this section) */
+
+.tooltipster-base {
+	/* this ensures that a constrained height set by functionPosition,
+	if greater that the natural height of the tooltip, will be enforced
+	in browsers that support display:flex */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	pointer-events: none;
+	/* this may be overriden in JS for fixed position origins */
+	position: absolute;
+}
+
+.tooltipster-box {
+	/* see .tooltipster-base. flex-shrink 1 is only necessary for IE10-
+	and flex-basis auto for IE11- (at least) */
+	-webkit-box-flex: 1;
+	    -ms-flex: 1 1 auto;
+	        flex: 1 1 auto;
+}
+
+.tooltipster-content {
+	/* prevents an overflow if the user adds padding to the div */
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	/* these make sure we'll be able to detect any overflow */
+	max-height: 100%;
+	max-width: 100%;
+	overflow: auto;
+}
+
+.tooltipster-ruler {
+	/* these let us test the size of the tooltip without overflowing the window */
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	position: fixed;
+	right: 0;
+	top: 0;
+	visibility: hidden;
+}
+
+/* ANIMATIONS */
+
+/* Open/close animations */
+
+/* fade */
+
+.tooltipster-fade {
+	opacity: 0;
+	-webkit-transition-property: opacity;
+	transition-property: opacity;
+}
+.tooltipster-fade.tooltipster-show {
+	opacity: 1;
+}
+
+/* grow */
+
+.tooltipster-grow {
+	-webkit-transform: scale(0,0);
+	-ms-transform: scale(0,0);
+	transform: scale(0,0);
+	-webkit-transition-property: -webkit-transform;
+	transition-property: -webkit-transform;
+	transition-property: transform;
+	transition-property: transform, -webkit-transform;
+	-webkit-backface-visibility: hidden;
+}
+.tooltipster-grow.tooltipster-show {
+	-webkit-transform: scale(1,1);
+	-ms-transform: scale(1,1);
+	transform: scale(1,1);
+	-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+	-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+	transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+}
+
+/* swing */
+
+.tooltipster-swing {
+	opacity: 0;
+	-webkit-transform: rotateZ(4deg);
+	-ms-transform: rotateZ(4deg);
+	transform: rotateZ(4deg);
+	-webkit-transition-property: -webkit-transform, opacity;
+	-webkit-transition-property: -webkit-transform;
+	transition-property: -webkit-transform;
+	transition-property: transform;
+	transition-property: transform, -webkit-transform;
+}
+.tooltipster-swing.tooltipster-show {
+	opacity: 1;
+	-webkit-transform: rotateZ(0deg);
+	-ms-transform: rotateZ(0deg);
+	transform: rotateZ(0deg);
+	-webkit-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 1);
+	-webkit-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);
+	transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);
+}
+
+/* fall */
+
+.tooltipster-fall {
+	-webkit-transition-property: top;
+	transition-property: top;
+	-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+	-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+	transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+}
+.tooltipster-fall.tooltipster-initial {
+	top: 0 !important;
+}
+.tooltipster-fall.tooltipster-show {
+}
+.tooltipster-fall.tooltipster-dying {
+	-webkit-transition-property: all;
+	transition-property: all;
+	top: 0 !important;
+	opacity: 0;
+}
+
+/* slide */
+
+.tooltipster-slide {
+	-webkit-transition-property: left;
+	transition-property: left;
+	-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+	-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+	transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+}
+.tooltipster-slide.tooltipster-initial {
+	left: -40px !important;
+}
+.tooltipster-slide.tooltipster-show {
+}
+.tooltipster-slide.tooltipster-dying {
+	-webkit-transition-property: all;
+	transition-property: all;
+	left: 0 !important;
+	opacity: 0;
+}
+
+/* Update animations */
+
+/* We use animations rather than transitions here because
+ transition durations may be specified in the style tag due to
+ animationDuration, and we try to avoid collisions and the use
+ of !important */
+
+/* fade */
+
+@-webkit-keyframes tooltipster-fading {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes tooltipster-fading {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.tooltipster-update-fade {
+	-webkit-animation: tooltipster-fading 400ms;
+	        animation: tooltipster-fading 400ms;
+}
+
+/* rotate */
+
+@-webkit-keyframes tooltipster-rotating {
+	25% {
+		-webkit-transform: rotate(-2deg);
+		        transform: rotate(-2deg);
+	}
+	75% {
+		-webkit-transform: rotate(2deg);
+		        transform: rotate(2deg);
+	}
+	100% {
+		-webkit-transform: rotate(0);
+		        transform: rotate(0);
+	}
+}
+
+@keyframes tooltipster-rotating {
+	25% {
+		-webkit-transform: rotate(-2deg);
+		        transform: rotate(-2deg);
+	}
+	75% {
+		-webkit-transform: rotate(2deg);
+		        transform: rotate(2deg);
+	}
+	100% {
+		-webkit-transform: rotate(0);
+		        transform: rotate(0);
+	}
+}
+
+.tooltipster-update-rotate {
+	-webkit-animation: tooltipster-rotating 600ms;
+	        animation: tooltipster-rotating 600ms;
+}
+
+/* scale */
+
+@-webkit-keyframes tooltipster-scaling {
+	50% {
+		-webkit-transform: scale(1.1);
+		        transform: scale(1.1);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		        transform: scale(1);
+	}
+}
+
+@keyframes tooltipster-scaling {
+	50% {
+		-webkit-transform: scale(1.1);
+		        transform: scale(1.1);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		        transform: scale(1);
+	}
+}
+
+.tooltipster-update-scale {
+	-webkit-animation: tooltipster-scaling 600ms;
+	        animation: tooltipster-scaling 600ms;
+}
+
+/**
+ * DEFAULT STYLE OF THE SIDETIP PLUGIN
+ * 
+ * All styles are "namespaced" with .tooltipster-sidetip to prevent
+ * conflicts between plugins.
+ */
+
+/* .tooltipster-box */
+
+.tooltipster-sidetip .tooltipster-box {
+	background: #565656;
+	border: 2px solid black;
+	border-radius: 4px;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-box {
+	margin-top: 8px;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-box {
+	margin-right: 8px;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-box {
+	margin-left: 8px;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-box {
+	margin-bottom: 8px;
+}
+
+/* .tooltipster-content
+
+.tooltipster-sidetip .tooltipster-content {
+	color: white;
+	line-height: 18px;
+	padding: 6px 14px;
+} */
+.tooltipster-sidetip .tooltipster-content {
+	color: white;	
+}
+/* .tooltipster-arrow : will keep only the zone of .tooltipster-arrow-uncropped that
+corresponds to the arrow we want to display */
+
+.tooltipster-sidetip .tooltipster-arrow {
+	overflow: hidden;
+	position: absolute;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow {
+	height: 10px;
+	/* half the width, for centering */
+	margin-left: -10px;
+	top: 0;
+	width: 20px;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow {
+	height: 20px;
+	margin-top: -10px;
+	right: 0;
+	/* top 0 to keep the arrow from overflowing .tooltipster-base when it has not
+	been positioned yet */
+	top: 0;
+	width: 10px;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow {
+	height: 20px;
+	margin-top: -10px;
+	left: 0;
+	/* same as .tooltipster-left .tooltipster-arrow */
+	top: 0;
+	width: 10px;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow {
+	bottom: 0;
+	height: 10px;
+	margin-left: -10px;
+	width: 20px;
+}
+
+/* common rules between .tooltipster-arrow-background and .tooltipster-arrow-border */
+
+.tooltipster-sidetip .tooltipster-arrow-background, .tooltipster-sidetip .tooltipster-arrow-border {
+	height: 0;
+	position: absolute;
+	width: 0;
+}
+
+/* .tooltipster-arrow-background */
+
+.tooltipster-sidetip .tooltipster-arrow-background {
+	border: 10px solid transparent;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-background {
+	border-bottom-color: #565656;
+	left: 0;
+	top: 3px;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-background {
+	border-left-color: #565656;
+	left: -3px;
+	top: 0;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-background {
+	border-right-color: #565656;
+	left: 3px;
+	top: 0;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-background {
+	border-top-color: #565656;
+	left: 0;
+	top: -3px;
+}
+
+/* .tooltipster-arrow-border */
+
+.tooltipster-sidetip .tooltipster-arrow-border {
+	border: 10px solid transparent;
+	left: 0;
+	top: 0;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-border {
+	border-bottom-color: black;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-border {
+	border-left-color: black;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-border {
+	border-right-color: black;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-border {
+	border-top-color: black;
+}
+
+/* tooltipster-arrow-uncropped */
+
+.tooltipster-sidetip .tooltipster-arrow-uncropped {
+	position: relative;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-uncropped {
+	top: -10px;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-uncropped {
+	left: -10px;
+}
+</style><style type="text/css">/* Page */
+.octotree_sidebar input[type=checkbox] {
+  opacity: 1!important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex!important;
+  clip: inherit!important;
+  top: inherit!important;
+}
+.view-header input[type=checkbox] {
+  position: relative!important;
+  top: inherit!important;
+  left: inherit!important;
+  right: inherit!important;
+  bottom: inherit!important;
+}
+/* Sidebar */
+.octotree_sidebar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  width: 400px;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  z-index: 999991;
+  -webkit-box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.16);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.octotree .octotree_sidebar {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 16px 0px;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.16);
+}
+/* Toggle button */
+.octotree_toggle {
+  position: fixed;
+  top: auto;
+  right: 0;
+  bottom: 5px;
+  left: auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+  background-color: rgba(52, 73, 94, 0.3);
+  font-size: 15pt;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  z-index: 999992;
+  transition: left 0.2s ease-in;
+  -webkit-transition: left 0.2s ease-in;
+  display: none;
+}
+.octotree .octotree_toggle {
+  right: 365px;
+}
+.octotree .octotree_sidebar .view-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 400px;
+  height: 36px;
+  background: #F7F7F7;
+  z-index: 999996;
+}
+.header-close,
+.liebao-ex-style-image-settings {
+  cursor: pointer;
+  position: relative;
+}
+.header-close:before,
+.liebao-ex-style-image-settings:before,
+.header-close:after,
+.liebao-ex-style-image-settings:after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-size: 100% 100%;
+}
+.header-close {
+  margin-left: 5px;
+  width: 26px;
+  height: 26px;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjZweCIgaGVpZ2h0PSIyNnB4IiB2aWV3Qm94PSIwIDAgMjYgMjYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDY0ICg5MzUzNykgLSBodHRwczovL3NrZXRjaC5jb20gLS0+CiAgICA8dGl0bGU+5Y+z5LiK5o6n5Lu2PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9InZpcOS8muWRmCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgb3BhY2l0eT0iMC44Ij4KICAgICAgICA8ZyBpZD0iM+aAgeWIh+WbviIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI1MS4wMDAwMDAsIC0xNTUuMDAwMDAwKSIgZmlsbD0iIzNDM0U0MCI+CiAgICAgICAgICAgIDxnIGlkPSJ4IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNTEuMDAwMDAwLCAxNTUuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNOC43NjQ1MzgyNSw4LjA1MDI1MjUzIEwxMy4wMDAxMDk3LDEyLjI4NjEwOTcgTDE3LjIzNTQ2MTgsOC4wNTAyNTI1MyBDMTcuNDMyNzA2Myw3Ljg1MzAwNzk4IDE3Ljc1MjUwMjksNy44NTMwMDc5OCAxNy45NDk3NDc1LDguMDUwMjUyNTMgQzE4LjE0Njk5Miw4LjI0NzQ5NzA5IDE4LjE0Njk5Miw4LjU2NzI5MzY5IDE3Ljk0OTc0NzUsOC43NjQ1MzgyNSBMMTMuNzE0MTA5NywxMy4wMDAxMDk3IEwxNy45NDk3NDc1LDE3LjIzNTQ2MTggQzE4LjE0Njk5MiwxNy40MzI3MDYzIDE4LjE0Njk5MiwxNy43NTI1MDI5IDE3Ljk0OTc0NzUsMTcuOTQ5NzQ3NSBDMTcuNzUyNTAyOSwxOC4xNDY5OTIgMTcuNDMyNzA2MywxOC4xNDY5OTIgMTcuMjM1NDYxOCwxNy45NDk3NDc1IEwxMy4wMDAxMDk3LDEzLjcxNDEwOTcgTDguNzY0NTM4MjUsMTcuOTQ5NzQ3NSBDOC41NjcyOTM2OSwxOC4xNDY5OTIgOC4yNDc0OTcwOSwxOC4xNDY5OTIgOC4wNTAyNTI1MywxNy45NDk3NDc1IEM3Ljg1MzAwNzk4LDE3Ljc1MjUwMjkgNy44NTMwMDc5OCwxNy40MzI3MDYzIDguMDUwMjUyNTMsMTcuMjM1NDYxOCBMMTIuMjg2MTA5NywxMy4wMDAxMDk3IEw4LjA1MDI1MjUzLDguNzY0NTM4MjUgQzcuODUzMDA3OTgsOC41NjcyOTM2OSA3Ljg1MzAwNzk4LDguMjQ3NDk3MDkgOC4wNTAyNTI1Myw4LjA1MDI1MjUzIEM4LjI0NzQ5NzA5LDcuODUzMDA3OTggOC41NjcyOTM2OSw3Ljg1MzAwNzk4IDguNzY0NTM4MjUsOC4wNTAyNTI1MyBaIiBpZD0i5b2i54q257uT5ZCIIj48L3BhdGg+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.header-close:before {
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjZweCIgaGVpZ2h0PSIyNnB4IiB2aWV3Qm94PSIwIDAgMjYgMjYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDY0ICg5MzUzNykgLSBodHRwczovL3NrZXRjaC5jb20gLS0+CiAgICA8dGl0bGU+5Y+z5LiK5o6n5Lu2PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9InZpcOS8muWRmCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IjPmgIHliIflm74iIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yODcuMDAwMDAwLCAtMTU1LjAwMDAwMCkiPgogICAgICAgICAgICA8ZyBpZD0ieOWkh+S7vSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjg3LjAwMDAwMCwgMTU1LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPHJlY3QgaWQ9IuefqeW9ouWkh+S7vS01IiBmaWxsPSIjRDhEOEQ4IiBvcGFjaXR5PSIwLjYiIHg9IjAiIHk9IjAiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgcng9IjQiPjwvcmVjdD4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik04Ljc2NDUzODI1LDguMDUwMjUyNTMgTDEzLjAwMDEwOTcsMTIuMjg2MTA5NyBMMTcuMjM1NDYxOCw4LjA1MDI1MjUzIEMxNy40MzI3MDYzLDcuODUzMDA3OTggMTcuNzUyNTAyOSw3Ljg1MzAwNzk4IDE3Ljk0OTc0NzUsOC4wNTAyNTI1MyBDMTguMTQ2OTkyLDguMjQ3NDk3MDkgMTguMTQ2OTkyLDguNTY3MjkzNjkgMTcuOTQ5NzQ3NSw4Ljc2NDUzODI1IEwxMy43MTQxMDk3LDEzLjAwMDEwOTcgTDE3Ljk0OTc0NzUsMTcuMjM1NDYxOCBDMTguMTQ2OTkyLDE3LjQzMjcwNjMgMTguMTQ2OTkyLDE3Ljc1MjUwMjkgMTcuOTQ5NzQ3NSwxNy45NDk3NDc1IEMxNy43NTI1MDI5LDE4LjE0Njk5MiAxNy40MzI3MDYzLDE4LjE0Njk5MiAxNy4yMzU0NjE4LDE3Ljk0OTc0NzUgTDEzLjAwMDEwOTcsMTMuNzE0MTA5NyBMOC43NjQ1MzgyNSwxNy45NDk3NDc1IEM4LjU2NzI5MzY5LDE4LjE0Njk5MiA4LjI0NzQ5NzA5LDE4LjE0Njk5MiA4LjA1MDI1MjUzLDE3Ljk0OTc0NzUgQzcuODUzMDA3OTgsMTcuNzUyNTAyOSA3Ljg1MzAwNzk4LDE3LjQzMjcwNjMgOC4wNTAyNTI1MywxNy4yMzU0NjE4IEwxMi4yODYxMDk3LDEzLjAwMDEwOTcgTDguMDUwMjUyNTMsOC43NjQ1MzgyNSBDNy44NTMwMDc5OCw4LjU2NzI5MzY5IDcuODUzMDA3OTgsOC4yNDc0OTcwOSA4LjA1MDI1MjUzLDguMDUwMjUyNTMgQzguMjQ3NDk3MDksNy44NTMwMDc5OCA4LjU2NzI5MzY5LDcuODUzMDA3OTggOC43NjQ1MzgyNSw4LjA1MDI1MjUzIFoiIGlkPSLlvaLnirbnu5PlkIgiIGZpbGw9IiMzQzNFNDAiIG9wYWNpdHk9IjAuOCI+PC9wYXRoPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=);
+}
+.header-close:after {
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjZweCIgaGVpZ2h0PSIyNnB4IiB2aWV3Qm94PSIwIDAgMjYgMjYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDY0ICg5MzUzNykgLSBodHRwczovL3NrZXRjaC5jb20gLS0+CiAgICA8dGl0bGU+5Y+z5LiK5o6n5Lu2PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9InZpcOS8muWRmCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgb3BhY2l0eT0iMC44Ij4KICAgICAgICA8ZyBpZD0iM+aAgeWIh+WbviIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMyMy4wMDAwMDAsIC0xNTUuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJ45aSH5Lu9LTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMyMy4wMDAwMDAsIDE1NS4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxyZWN0IGlkPSLnn6nlvaLlpIfku70tNSIgZmlsbD0iI0Q4RDhEOCIgeD0iMCIgeT0iMCIgd2lkdGg9IjI2IiBoZWlnaHQ9IjI2IiByeD0iNCI+PC9yZWN0PgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTguNzY0NTM4MjUsOC4wNTAyNTI1MyBMMTMuMDAwMTA5NywxMi4yODYxMDk3IEwxNy4yMzU0NjE4LDguMDUwMjUyNTMgQzE3LjQzMjcwNjMsNy44NTMwMDc5OCAxNy43NTI1MDI5LDcuODUzMDA3OTggMTcuOTQ5NzQ3NSw4LjA1MDI1MjUzIEMxOC4xNDY5OTIsOC4yNDc0OTcwOSAxOC4xNDY5OTIsOC41NjcyOTM2OSAxNy45NDk3NDc1LDguNzY0NTM4MjUgTDEzLjcxNDEwOTcsMTMuMDAwMTA5NyBMMTcuOTQ5NzQ3NSwxNy4yMzU0NjE4IEMxOC4xNDY5OTIsMTcuNDMyNzA2MyAxOC4xNDY5OTIsMTcuNzUyNTAyOSAxNy45NDk3NDc1LDE3Ljk0OTc0NzUgQzE3Ljc1MjUwMjksMTguMTQ2OTkyIDE3LjQzMjcwNjMsMTguMTQ2OTkyIDE3LjIzNTQ2MTgsMTcuOTQ5NzQ3NSBMMTMuMDAwMTA5NywxMy43MTQxMDk3IEw4Ljc2NDUzODI1LDE3Ljk0OTc0NzUgQzguNTY3MjkzNjksMTguMTQ2OTkyIDguMjQ3NDk3MDksMTguMTQ2OTkyIDguMDUwMjUyNTMsMTcuOTQ5NzQ3NSBDNy44NTMwMDc5OCwxNy43NTI1MDI5IDcuODUzMDA3OTgsMTcuNDMyNzA2MyA4LjA1MDI1MjUzLDE3LjIzNTQ2MTggTDEyLjI4NjEwOTcsMTMuMDAwMTA5NyBMOC4wNTAyNTI1Myw4Ljc2NDUzODI1IEM3Ljg1MzAwNzk4LDguNTY3MjkzNjkgNy44NTMwMDc5OCw4LjI0NzQ5NzA5IDguMDUwMjUyNTMsOC4wNTAyNTI1MyBDOC4yNDc0OTcwOSw3Ljg1MzAwNzk4IDguNTY3MjkzNjksNy44NTMwMDc5OCA4Ljc2NDUzODI1LDguMDUwMjUyNTMgWiIgaWQ9IuW9oueKtue7k+WQiCIgZmlsbD0iIzNDM0U0MCI+PC9wYXRoPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=);
+}
+.header-close:hover:before {
+  opacity: 1;
+}
+.header-close:active:after {
+  opacity: 1;
+}
+.header-title {
+  width: 70px;
+  height: 16px;
+  font-size: 12px;
+  font-family: MicrosoftYaHei;
+  color: #3C3E40;
+  line-height: 16px;
+  margin-left: 60px;
+}
+.header-tools {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.liebao-ex-style-image-settings {
+  width: 26px;
+  height: 26px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjZweCIgaGVpZ2h0PSIyNnB4IiB2aWV3Qm94PSIwIDAgMjYgMjYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDY0ICg5MzUzNykgLSBodHRwczovL3NrZXRjaC5jb20gLS0+CiAgICA8dGl0bGU+5b2i54q257uT5ZCIPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9InZpcOS8muWRmCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgb3BhY2l0eT0iMC42Ij4KICAgICAgICA8ZyBpZD0iM+aAgeWIh+WbviIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI1MS4wMDAwMDAsIC0xMTkuMDAwMDAwKSIgZmlsbD0iIzNDM0U0MCIgZmlsbC1ydWxlPSJub256ZXJvIj4KICAgICAgICAgICAgPGcgaWQ9Iuiuvue9riIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjUxLjAwMDAwMCwgMTE5LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTE5LjU4OTI4NTcsMTMgQzE5LjU4OTI4NTcsMTIuMDY0Mjg1NyAyMC4xNzY3ODU3LDExLjI3MTQyODYgMjEsMTAuOTU1MzU3MSBDMjAuODAzNTcxNCwxMC4xODM5Mjg2IDIwLjUsOS40NTcxNDI4NiAyMC4xMDM1NzE0LDguNzg5Mjg1NzEgQzE5LjI5NjQyODYsOS4xNDgyMTQyOSAxOC4zMjE0Mjg2LDkuMDAxNzg1NzEgMTcuNjYwNzE0Myw4LjMzOTI4NTcxIEMxNyw3LjY3ODU3MTQzIDE2Ljg1MzU3MTQsNi43MDE3ODU3MSAxNy4yMTI1LDUuODk2NDI4NTcgQzE2LjU0Mjg1NzEsNS41IDE1LjgxNjA3MTQsNS4xOTY0Mjg1NyAxNS4wNDQ2NDI5LDUgQzE0LjcyNjc4NTcsNS44MjMyMTQyOSAxMy45MzM5Mjg2LDYuNDEwNzE0MjkgMTMsNi40MTA3MTQyOSBDMTIuMDY0Mjg1Nyw2LjQxMDcxNDI5IDExLjI3MTQyODYsNS44MjMyMTQyOSAxMC45NTUzNTcxLDUgQzEwLjE4MzkyODYsNS4xOTY0Mjg1NyA5LjQ1NzE0Mjg2LDUuNSA4Ljc4OTI4NTcxLDUuODk2NDI4NTcgQzkuMTQ4MjE0MjksNi43MDM1NzE0MyA5LjAwMTc4NTcxLDcuNjc4NTcxNDMgOC4zNDEwNzE0Myw4LjMzOTI4NTcxIEM3LjY4MDM1NzE0LDkgNi43MDM1NzE0Myw5LjE0NjQyODU3IDUuODk4MjE0MjksOC43ODkyODU3MSBDNS41LDkuNDU3MTQyODYgNS4xOTY0Mjg1NywxMC4xODM5Mjg2IDUsMTAuOTU1MzU3MSBDNS44MjMyMTQyOSwxMS4yNzMyMTQzIDYuNDEwNzE0MjksMTIuMDY2MDcxNCA2LjQxMDcxNDI5LDEzIEM2LjQxMDcxNDI5LDEzLjkzNTcxNDMgNS44MjMyMTQyOSwxNC43Mjg1NzE0IDUsMTUuMDQ0NjQyOSBDNS4xOTY0Mjg1NywxNS44MTYwNzE0IDUuNSwxNi41NDI4NTcxIDUuODk2NDI4NTcsMTcuMjEwNzE0MyBDNi43MDM1NzE0MywxNi44NTE3ODU3IDcuNjc4NTcxNDMsMTYuOTk4MjE0MyA4LjMzOTI4NTcxLDE3LjY2MDcxNDMgQzksMTguMzIxNDI4NiA5LjE0NjQyODU3LDE5LjI5ODIxNDMgOC43ODc1LDIwLjEwMzU3MTQgQzkuNDU3MTQyODYsMjAuNSAxMC4xODM5Mjg2LDIwLjgwMzU3MTQgMTAuOTU1MzU3MSwyMSBDMTEuMjczMjE0MywyMC4xNzY3ODU3IDEyLjA2NjA3MTQsMTkuNTg5Mjg1NyAxMywxOS41ODkyODU3IEMxMy45MzU3MTQzLDE5LjU4OTI4NTcgMTQuNzI4NTcxNCwyMC4xNzY3ODU3IDE1LjA0NDY0MjksMjEgQzE1LjgxNjA3MTQsMjAuODAzNTcxNCAxNi41NDI4NTcxLDIwLjUgMTcuMjEwNzE0MywyMC4xMDM1NzE0IEMxNi44NTE3ODU3LDE5LjI5NjQyODYgMTYuOTk4MjE0MywxOC4zMjE0Mjg2IDE3LjY1ODkyODYsMTcuNjYwNzE0MyBDMTguMzE5NjQyOSwxNyAxOS4yOTY0Mjg2LDE2Ljg1MzU3MTQgMjAuMTAxNzg1NywxNy4yMTA3MTQzIEMyMC41LDE2LjU0Mjg1NzEgMjAuODAzNTcxNCwxNS44MTYwNzE0IDIxLDE1LjA0NDY0MjkgQzIwLjE3Njc4NTcsMTQuNzI4NTcxNCAxOS41ODkyODU3LDEzLjkzNTcxNDMgMTkuNTg5Mjg1NywxMyBaIE0xMywxNi40Mjg1NzE0IEMxMS4xMDczMTcxLDE2LjQyODU3MTQgOS41NzE0Mjg1NywxNC44OTI2ODI5IDkuNTcxNDI4NTcsMTMgQzkuNTcxNDI4NTcsMTEuMTA3MzE3MSAxMS4xMDczMTcxLDkuNTcxNDI4NTcgMTMsOS41NzE0Mjg1NyBDMTQuODkyNjgyOSw5LjU3MTQyODU3IDE2LjQyODU3MTQsMTEuMTA3MzE3MSAxNi40Mjg1NzE0LDEzIEMxNi40Mjg1NzE0LDE0Ljg5MjY4MjkgMTQuODkyNjgyOSwxNi40Mjg1NzE0IDEzLDE2LjQyODU3MTQgWiIgaWQ9IuW9oueKtiI+PC9wYXRoPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.liebao-ex-style-image-settings:before {
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjZweCIgaGVpZ2h0PSIyNnB4IiB2aWV3Qm94PSIwIDAgMjYgMjYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDY0ICg5MzUzNykgLSBodHRwczovL3NrZXRjaC5jb20gLS0+CiAgICA8dGl0bGU+5b2i54q257uT5ZCIPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9InZpcOS8muWRmCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgb3BhY2l0eT0iMC42Ij4KICAgICAgICA8ZyBpZD0iM+aAgeWIh+WbviIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI4Ny4wMDAwMDAsIC0xMTkuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSLorr7nva7lpIfku70iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI4Ny4wMDAwMDAsIDExOS4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxyZWN0IGlkPSLnn6nlvaLlpIfku70tNSIgZmlsbD0iI0Q4RDhEOCIgeD0iMCIgeT0iMCIgd2lkdGg9IjI2IiBoZWlnaHQ9IjI2IiByeD0iNCI+PC9yZWN0PgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTE5LjU4OTI4NTcsMTMgQzE5LjU4OTI4NTcsMTIuMDY0Mjg1NyAyMC4xNzY3ODU3LDExLjI3MTQyODYgMjEsMTAuOTU1MzU3MSBDMjAuODAzNTcxNCwxMC4xODM5Mjg2IDIwLjUsOS40NTcxNDI4NiAyMC4xMDM1NzE0LDguNzg5Mjg1NzEgQzE5LjI5NjQyODYsOS4xNDgyMTQyOSAxOC4zMjE0Mjg2LDkuMDAxNzg1NzEgMTcuNjYwNzE0Myw4LjMzOTI4NTcxIEMxNyw3LjY3ODU3MTQzIDE2Ljg1MzU3MTQsNi43MDE3ODU3MSAxNy4yMTI1LDUuODk2NDI4NTcgQzE2LjU0Mjg1NzEsNS41IDE1LjgxNjA3MTQsNS4xOTY0Mjg1NyAxNS4wNDQ2NDI5LDUgQzE0LjcyNjc4NTcsNS44MjMyMTQyOSAxMy45MzM5Mjg2LDYuNDEwNzE0MjkgMTMsNi40MTA3MTQyOSBDMTIuMDY0Mjg1Nyw2LjQxMDcxNDI5IDExLjI3MTQyODYsNS44MjMyMTQyOSAxMC45NTUzNTcxLDUgQzEwLjE4MzkyODYsNS4xOTY0Mjg1NyA5LjQ1NzE0Mjg2LDUuNSA4Ljc4OTI4NTcxLDUuODk2NDI4NTcgQzkuMTQ4MjE0MjksNi43MDM1NzE0MyA5LjAwMTc4NTcxLDcuNjc4NTcxNDMgOC4zNDEwNzE0Myw4LjMzOTI4NTcxIEM3LjY4MDM1NzE0LDkgNi43MDM1NzE0Myw5LjE0NjQyODU3IDUuODk4MjE0MjksOC43ODkyODU3MSBDNS41LDkuNDU3MTQyODYgNS4xOTY0Mjg1NywxMC4xODM5Mjg2IDUsMTAuOTU1MzU3MSBDNS44MjMyMTQyOSwxMS4yNzMyMTQzIDYuNDEwNzE0MjksMTIuMDY2MDcxNCA2LjQxMDcxNDI5LDEzIEM2LjQxMDcxNDI5LDEzLjkzNTcxNDMgNS44MjMyMTQyOSwxNC43Mjg1NzE0IDUsMTUuMDQ0NjQyOSBDNS4xOTY0Mjg1NywxNS44MTYwNzE0IDUuNSwxNi41NDI4NTcxIDUuODk2NDI4NTcsMTcuMjEwNzE0MyBDNi43MDM1NzE0MywxNi44NTE3ODU3IDcuNjc4NTcxNDMsMTYuOTk4MjE0MyA4LjMzOTI4NTcxLDE3LjY2MDcxNDMgQzksMTguMzIxNDI4NiA5LjE0NjQyODU3LDE5LjI5ODIxNDMgOC43ODc1LDIwLjEwMzU3MTQgQzkuNDU3MTQyODYsMjAuNSAxMC4xODM5Mjg2LDIwLjgwMzU3MTQgMTAuOTU1MzU3MSwyMSBDMTEuMjczMjE0MywyMC4xNzY3ODU3IDEyLjA2NjA3MTQsMTkuNTg5Mjg1NyAxMywxOS41ODkyODU3IEMxMy45MzU3MTQzLDE5LjU4OTI4NTcgMTQuNzI4NTcxNCwyMC4xNzY3ODU3IDE1LjA0NDY0MjksMjEgQzE1LjgxNjA3MTQsMjAuODAzNTcxNCAxNi41NDI4NTcxLDIwLjUgMTcuMjEwNzE0MywyMC4xMDM1NzE0IEMxNi44NTE3ODU3LDE5LjI5NjQyODYgMTYuOTk4MjE0MywxOC4zMjE0Mjg2IDE3LjY1ODkyODYsMTcuNjYwNzE0MyBDMTguMzE5NjQyOSwxNyAxOS4yOTY0Mjg2LDE2Ljg1MzU3MTQgMjAuMTAxNzg1NywxNy4yMTA3MTQzIEMyMC41LDE2LjU0Mjg1NzEgMjAuODAzNTcxNCwxNS44MTYwNzE0IDIxLDE1LjA0NDY0MjkgQzIwLjE3Njc4NTcsMTQuNzI4NTcxNCAxOS41ODkyODU3LDEzLjkzNTcxNDMgMTkuNTg5Mjg1NywxMyBaIE0xMywxNi40Mjg1NzE0IEMxMS4xMDczMTcxLDE2LjQyODU3MTQgOS41NzE0Mjg1NywxNC44OTI2ODI5IDkuNTcxNDI4NTcsMTMgQzkuNTcxNDI4NTcsMTEuMTA3MzE3MSAxMS4xMDczMTcxLDkuNTcxNDI4NTcgMTMsOS41NzE0Mjg1NyBDMTQuODkyNjgyOSw5LjU3MTQyODU3IDE2LjQyODU3MTQsMTEuMTA3MzE3MSAxNi40Mjg1NzE0LDEzIEMxNi40Mjg1NzE0LDE0Ljg5MjY4MjkgMTQuODkyNjgyOSwxNi40Mjg1NzE0IDEzLDE2LjQyODU3MTQgWiIgaWQ9IuW9oueKtiIgZmlsbD0iIzNDM0U0MCIgZmlsbC1ydWxlPSJub256ZXJvIj48L3BhdGg+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==);
+}
+.liebao-ex-style-image-settings:after {
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjZweCIgaGVpZ2h0PSIyNnB4IiB2aWV3Qm94PSIwIDAgMjYgMjYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDY0ICg5MzUzNykgLSBodHRwczovL3NrZXRjaC5jb20gLS0+CiAgICA8dGl0bGU+5b2i54q257uT5ZCIPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9InZpcOS8muWRmCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IjPmgIHliIflm74iIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zMjMuMDAwMDAwLCAtMTE5LjAwMDAwMCkiPgogICAgICAgICAgICA8ZyBpZD0i6K6+572u5aSH5Lu9LTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMyMy4wMDAwMDAsIDExOS4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxyZWN0IGlkPSLnn6nlvaLlpIfku70tNSIgZmlsbD0iI0Q4RDhEOCIgb3BhY2l0eT0iMC44IiB4PSIwIiB5PSIwIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHJ4PSI0Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTkuNTg5Mjg1NywxMyBDMTkuNTg5Mjg1NywxMi4wNjQyODU3IDIwLjE3Njc4NTcsMTEuMjcxNDI4NiAyMSwxMC45NTUzNTcxIEMyMC44MDM1NzE0LDEwLjE4MzkyODYgMjAuNSw5LjQ1NzE0Mjg2IDIwLjEwMzU3MTQsOC43ODkyODU3MSBDMTkuMjk2NDI4Niw5LjE0ODIxNDI5IDE4LjMyMTQyODYsOS4wMDE3ODU3MSAxNy42NjA3MTQzLDguMzM5Mjg1NzEgQzE3LDcuNjc4NTcxNDMgMTYuODUzNTcxNCw2LjcwMTc4NTcxIDE3LjIxMjUsNS44OTY0Mjg1NyBDMTYuNTQyODU3MSw1LjUgMTUuODE2MDcxNCw1LjE5NjQyODU3IDE1LjA0NDY0MjksNSBDMTQuNzI2Nzg1Nyw1LjgyMzIxNDI5IDEzLjkzMzkyODYsNi40MTA3MTQyOSAxMyw2LjQxMDcxNDI5IEMxMi4wNjQyODU3LDYuNDEwNzE0MjkgMTEuMjcxNDI4Niw1LjgyMzIxNDI5IDEwLjk1NTM1NzEsNSBDMTAuMTgzOTI4Niw1LjE5NjQyODU3IDkuNDU3MTQyODYsNS41IDguNzg5Mjg1NzEsNS44OTY0Mjg1NyBDOS4xNDgyMTQyOSw2LjcwMzU3MTQzIDkuMDAxNzg1NzEsNy42Nzg1NzE0MyA4LjM0MTA3MTQzLDguMzM5Mjg1NzEgQzcuNjgwMzU3MTQsOSA2LjcwMzU3MTQzLDkuMTQ2NDI4NTcgNS44OTgyMTQyOSw4Ljc4OTI4NTcxIEM1LjUsOS40NTcxNDI4NiA1LjE5NjQyODU3LDEwLjE4MzkyODYgNSwxMC45NTUzNTcxIEM1LjgyMzIxNDI5LDExLjI3MzIxNDMgNi40MTA3MTQyOSwxMi4wNjYwNzE0IDYuNDEwNzE0MjksMTMgQzYuNDEwNzE0MjksMTMuOTM1NzE0MyA1LjgyMzIxNDI5LDE0LjcyODU3MTQgNSwxNS4wNDQ2NDI5IEM1LjE5NjQyODU3LDE1LjgxNjA3MTQgNS41LDE2LjU0Mjg1NzEgNS44OTY0Mjg1NywxNy4yMTA3MTQzIEM2LjcwMzU3MTQzLDE2Ljg1MTc4NTcgNy42Nzg1NzE0MywxNi45OTgyMTQzIDguMzM5Mjg1NzEsMTcuNjYwNzE0MyBDOSwxOC4zMjE0Mjg2IDkuMTQ2NDI4NTcsMTkuMjk4MjE0MyA4Ljc4NzUsMjAuMTAzNTcxNCBDOS40NTcxNDI4NiwyMC41IDEwLjE4MzkyODYsMjAuODAzNTcxNCAxMC45NTUzNTcxLDIxIEMxMS4yNzMyMTQzLDIwLjE3Njc4NTcgMTIuMDY2MDcxNCwxOS41ODkyODU3IDEzLDE5LjU4OTI4NTcgQzEzLjkzNTcxNDMsMTkuNTg5Mjg1NyAxNC43Mjg1NzE0LDIwLjE3Njc4NTcgMTUuMDQ0NjQyOSwyMSBDMTUuODE2MDcxNCwyMC44MDM1NzE0IDE2LjU0Mjg1NzEsMjAuNSAxNy4yMTA3MTQzLDIwLjEwMzU3MTQgQzE2Ljg1MTc4NTcsMTkuMjk2NDI4NiAxNi45OTgyMTQzLDE4LjMyMTQyODYgMTcuNjU4OTI4NiwxNy42NjA3MTQzIEMxOC4zMTk2NDI5LDE3IDE5LjI5NjQyODYsMTYuODUzNTcxNCAyMC4xMDE3ODU3LDE3LjIxMDcxNDMgQzIwLjUsMTYuNTQyODU3MSAyMC44MDM1NzE0LDE1LjgxNjA3MTQgMjEsMTUuMDQ0NjQyOSBDMjAuMTc2Nzg1NywxNC43Mjg1NzE0IDE5LjU4OTI4NTcsMTMuOTM1NzE0MyAxOS41ODkyODU3LDEzIFogTTEzLDE2LjQyODU3MTQgQzExLjEwNzMxNzEsMTYuNDI4NTcxNCA5LjU3MTQyODU3LDE0Ljg5MjY4MjkgOS41NzE0Mjg1NywxMyBDOS41NzE0Mjg1NywxMS4xMDczMTcxIDExLjEwNzMxNzEsOS41NzE0Mjg1NyAxMyw5LjU3MTQyODU3IEMxNC44OTI2ODI5LDkuNTcxNDI4NTcgMTYuNDI4NTcxNCwxMS4xMDczMTcxIDE2LjQyODU3MTQsMTMgQzE2LjQyODU3MTQsMTQuODkyNjgyOSAxNC44OTI2ODI5LDE2LjQyODU3MTQgMTMsMTYuNDI4NTcxNCBaIiBpZD0i5b2i54q2IiBmaWxsPSIjM0MzRTQwIiBmaWxsLXJ1bGU9Im5vbnplcm8iIG9wYWNpdHk9IjAuNiI+PC9wYXRoPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=);
+}
+.liebao-ex-style-image-settings:hover:before {
+  opacity: 1;
+}
+.liebao-ex-style-image-settings:active:after {
+  opacity: 1;
+}
+.liebao-ex-style-li-check,
+.liebao-ex-style-check-all {
+  outline: none;
+  width: 18px!important;
+  height: 18px!important;
+  background-color: #fff;
+  border-radius: 50%;
+  border: none;
+  font-size: 0.8rem;
+  padding: 0;
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: background-color ease 0.1s;
+  transition: background-color ease 0.1s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+.liebao-ex-style-li-check {
+  position: absolute!important;
+  bottom: 8px;
+  right: 8px;
+  z-index: 999999;
+  pointer-events: none;
+  background-color: transparent;
+}
+.liebao-ex-style-check-all {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 6px;
+  border: 1px solid #B0B1B2;
+}
+.liebao-ex-style-check-all::after {
+  background: transparent;
+  outline: none;
+  content: '';
+  position: absolute;
+  border: #D7D7D7 solid 2px;
+  border-top: none;
+  border-right: none;
+  height: 5px;
+  width: 9px;
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  margin-bottom: 1px;
+}
+.liebao-ex-style-li-check:checked::after {
+  outline: none;
+  content: '';
+  position: absolute;
+  background: transparent;
+  border: 2px solid #ffffff;
+  border-top: none;
+  border-right: none;
+  border-radius: none;
+  height: 5px;
+  width: 9px;
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  margin-top: 5px;
+}
+.liebao-ex-style-check-all:checked::after {
+  outline: none;
+  border: 2px solid #FFFFFF;
+  content: '';
+  position: absolute;
+  background: transparent;
+  border-top: none;
+  border-right: none;
+  height: 5px;
+  width: 9px;
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  margin-bottom: 1px;
+}
+.liebao-ex-style-li-check:checked,
+.liebao-ex-style-check-all:checked {
+  background-color: #F48000;
+  border: none;
+  outline: none;
+}
+.liebao_browser_imglst {
+  height: auto;
+  padding: 24px 28px 70px 28px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: overlay;
+}
+.liebao_style_ex_dm_sniffer_item {
+  width: 160px;
+  height: 120px;
+  border: 1px solid #B0B1B2;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  list-style: none;
+  cursor: pointer;
+  z-index: 999994;
+}
+.liebao_style_ex_dm_sniffer_item:nth-child(odd) {
+  margin-right: 24px;
+}
+.liebao_style_ex_dm_sniffer_item:last-child {
+  margin-right: auto;
+}
+.liebao_style_ex_dm_sniffer_image_holder {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 8px;
+  z-index: 999995;
+}
+.liebao_style_ex_dm_sniffer_image_holder:hover {
+  overflow: visible;
+}
+.liebao_style_ex_dm_sniffer_image_holder img {
+  max-width: 100%;
+  position: relative;
+  z-index: 999999;
+}
+.liebao_style_ex_dm_sniffer_image_holder:hover img {
+  position: relative;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 10px;
+  background: #ffffff;
+  z-index: 999999;
+}
+.liebao-ex-style-download-btn-cntr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 400px;
+  height: 70px;
+  background: #FFFFFF;
+  border: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999997;
+}
+.liebao-ex-style-download-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 40px;
+  width: 340px;
+  background: -webkit-gradient(linear, right top, left top, from(#FA6400), to(#FF8600));
+  background: linear-gradient(270deg, #FA6400 0%, #FF8600 100%);
+  border-radius: 8px;
+  text-align: center !important;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 40px !important;
+  z-index: 999997;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.liebao-ex-style-download-btn:hover {
+  background: -webkit-gradient(linear, right top, left top, from(#FF800B), to(#FF9903));
+  background: linear-gradient(270deg, #FF800B 0%, #FF9903 100%);
+  opacity: 1;
+}
+.liebao-ex-style-download-btn:active {
+  background: -webkit-gradient(linear, right top, left top, from(#F0660A), to(#F38308));
+  background: linear-gradient(270deg, #F0660A 0%, #F38308 100%);
+  opacity: 1;
+}
+.liebao_browser_imglst::-webkit-scrollbar {
+  width: 6px;
+  height: 90px;
+  border-radius: 4px;
+  opacity: 0.5;
+  color: #828282;
+}
+.context-menu-hover {
+  background-color: #F48000 !important;
+}
+.context-menu-list {
+  text-align: left;
+}
+.liebao_browser_imglst::-webkit-scrollbar-track-piece {
+  background: rgba(79, 111, 127, 0);
+}
+.liebao_browser_imglst::-webkit-scrollbar-track:hover {
+  background: rgba(78, 110, 125, 0.05);
+}
+.liebao_browser_imglst::-webkit-scrollbar-thumb {
+  background-color: rgba(130, 130, 130, 0.5);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 6px;
+}
+.liebao_browser_imglst::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(130, 130, 130, 0.7);
+}
+.tooltipster-sidetip.tooltipster-shadow .tooltipster-box {
+  border: 1px solid rgba(216, 216, 216, 0.2);
+  -webkit-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+}
+.tooltipster-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: horizontal!important;
+  -webkit-box-direction: normal!important;
+  -ms-flex-direction: row!important;
+  flex-direction: row!important;
+  padding: 0!important;
+  line-height: inherit!important;
+  border-radius: 4px !important;
+}
+.liebao-ex-style-hover-btn-right-border {
+  width: 1px;
+  height: 24px;
+  background: #ECECEC;
+}
+.liebao-ex-style-hover-btn {
+  width: 88px;
+  height: 64px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.liebao-ex-style-hover-btn:hover {
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFF4E4), to(#FFF8E4)) !important;
+  background: linear-gradient(180deg, #FFF4E4 0%, #FFF8E4 100%) !important;
+  opacity: 1;
+}
+.liebao-ex-style-hover-btn .liebao-ex-style-img-save {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 6px;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgd2lkdGg9IjIwcHgiIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAwIDIwIDIwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNjQgKDkzNTM3KSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4NCiAgICA8dGl0bGU+55+p5b2iPC90aXRsZT4NCiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4NCiAgICA8ZyBpZD0idmlw5Lya5ZGYL+S4h+iDveWkjeWIti/lhajlsY/nnIvlm74v5om56YeP5LiL6L29IiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4NCiAgICAgICAgPGcgaWQ9IuaWsOeJiC3kvJrlkZjlip/og70t5om56YeP5LiL6L29LTEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00MTkuMDAwMDAwLCAtNTM2LjAwMDAwMCkiPg0KICAgICAgICAgICAgPGcgaWQ9IuWPs+mUruWKn+iDveWkh+S7vS0yIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyOTguMDAwMDAwLCA1MjQuMDAwMDAwKSI+DQogICAgICAgICAgICAgICAgPGcgaWQ9IuWbvueJh+WPpuWtmCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTIxLjAwMDAwMCwgMTIuMDAwMDAwKSI+DQogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xNyw0IEMxNywzLjQ4NzE2NDE2IDE2LjYxMzk1OTgsMy4wNjQ0OTI4NCAxNi4xMTY2MjExLDMuMDA2NzI3NzMgTDE2LDMgTDQsMyBDMy40ODcxNjQxNiwzIDMuMDY0NDkyODQsMy4zODYwNDAxOSAzLjAwNjcyNzczLDMuODgzMzc4ODcgTDMsNCBMMywxNiBDMywxNi41MTI4MzU4IDMuMzg2MDQwMTksMTYuOTM1NTA3MiAzLjg4MzM3ODg3LDE2Ljk5MzI3MjMgTDQsMTcgTDgsMTcgTDgsMTcgQzguMjc2MTQyMzcsMTcgOC41LDE3LjIyMzg1NzYgOC41LDE3LjUgQzguNSwxNy43NzYxNDI0IDguMjc2MTQyMzcsMTggOCwxOCBMNCwxOCBDMi45NDU2MzgyLDE4IDIuMDgxODM0ODgsMTcuMTg0MTIyMiAyLjAwNTQ4NTc0LDE2LjE0OTI2MjMgTDIsMTYgTDIsNCBDMiwyLjk0NTYzODIgMi44MTU4Nzc3OSwyLjA4MTgzNDg4IDMuODUwNzM3NjYsMi4wMDU0ODU3NCBMNCwyIEwxNiwyIEMxNy4wNTQzNjE4LDIgMTcuOTE4MTY1MSwyLjgxNTg3Nzc5IDE3Ljk5NDUxNDMsMy44NTA3Mzc2NiBMMTgsNCBMMTgsMTAgTDE4LDEwIEMxOCwxMC4yNzYxNDI0IDE3Ljc3NjE0MjQsMTAuNSAxNy41LDEwLjUgQzE3LjIyMzg1NzYsMTAuNSAxNywxMC4yNzYxNDI0IDE3LDEwIEwxNyw0IFoiIGlkPSLlvaLnirbnu5PlkIgiIGZpbGw9IiMzQzNFNDAiIGZpbGwtcnVsZT0ibm9uemVybyI+PC9wYXRoPg0KICAgICAgICAgICAgICAgICAgICA8cmVjdCBpZD0i55+p5b2iIiBmaWxsPSIjRjQ4MDAwIiB4PSIxNCIgeT0iMTAiIHdpZHRoPSIxIiBoZWlnaHQ9IjkiIHJ4PSIwLjUiPjwvcmVjdD4NCiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTEyLjAwMjY0MDcsMTMgQzEyLjI3ODc4MzEsMTMgMTIuNTAyNjQwNywxMy4yMjM4NTc2IDEyLjUwMjY0MDcsMTMuNSBMMTIuNTAyNjQwNywxOCBMMTcuMDAyNjQwNywxOCBDMTcuMjc4NzgzMSwxOCAxNy41MDI2NDA3LDE4LjIyMzg1NzYgMTcuNTAyNjQwNywxOC41IEMxNy41MDI2NDA3LDE4Ljc3NjE0MjQgMTcuMjc4NzgzMSwxOSAxNy4wMDI2NDA3LDE5IEwxMi4wMDI2NDA3LDE5IEwxMi4wMDI2NDA3LDE5IEMxMS43MjY0OTgzLDE5IDExLjUwMjY0MDcsMTguNzc2MTQyNCAxMS41MDI2NDA3LDE4LjUgTDExLjUwMjY0MDcsMTMuNSBDMTEuNTAyNjQwNywxMy4yMjM4NTc2IDExLjcyNjQ5ODMsMTMgMTIuMDAyNjQwNywxMyBaIiBpZD0i5b2i54q257uT5ZCIIiBmaWxsPSIjRjQ4MDAwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC41MDI2NDEsIDE2LjAwMDAwMCkgcm90YXRlKC00NS4wMDAwMDApIHRyYW5zbGF0ZSgtMTQuNTAyNjQxLCAtMTYuMDAwMDAwKSAiPjwvcGF0aD4NCiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTE0LjUsMi41IEw1LjUsMi41IEw1LjUsNiBDNS41LDYuNDE0MjEzNTYgNS42Njc4OTMyMiw2Ljc4OTIxMzU2IDUuOTM5MzM5ODMsNy4wNjA2NjAxNyBDNi4yMTA3ODY0NCw3LjMzMjEwNjc4IDYuNTg1Nzg2NDQsNy41IDcsNy41IEwxMyw3LjUgQzEzLjQxNDIxMzYsNy41IDEzLjc4OTIxMzYsNy4zMzIxMDY3OCAxNC4wNjA2NjAyLDcuMDYwNjYwMTcgQzE0LjMzMjEwNjgsNi43ODkyMTM1NiAxNC41LDYuNDE0MjEzNTYgMTQuNSw2IEwxNC41LDIuNSBaIiBpZD0i55+p5b2iIiBzdHJva2U9IiMzQzNFNDAiPjwvcGF0aD4NCiAgICAgICAgICAgICAgICAgICAgPHJlY3QgaWQ9IuefqeW9oiIgZmlsbD0iIzNDM0U0MCIgeD0iMTIiIHk9IjQiIHdpZHRoPSIxIiBoZWlnaHQ9IjIiIHJ4PSIwLjUiPjwvcmVjdD4NCiAgICAgICAgICAgICAgICA8L2c+DQogICAgICAgICAgICA8L2c+DQogICAgICAgIDwvZz4NCiAgICA8L2c+DQo8L3N2Zz4=);
+}
+.liebao-ex-style-hover-btn .liebao-ex-style-ocr-icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 6px;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgd2lkdGg9IjIwcHgiIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAwIDIwIDIwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNjQgKDkzNTM3KSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4NCiAgICA8dGl0bGU+55+p5b2iPC90aXRsZT4NCiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4NCiAgICA8ZyBpZD0i5LiH6IO95aSN5Yi2L+WFqOWxj+eci+Wbvi/mibnph4/kuIvovb0iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPg0KICAgICAgICA8ZyBpZD0i5paw54mILeS8muWRmOWKn+iDvS3mibnph4/kuIvovb0tMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUyNi4wMDAwMDAsIC00ODYuMDAwMDAwKSI+DQogICAgICAgICAgICA8ZyBpZD0i5Y+z6ZSu5Yqf6IO95aSH5Lu9LTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyNS4wMDAwMDAsIDQ3NC4wMDAwMDApIj4NCiAgICAgICAgICAgICAgICA8ZyBpZD0i5paH5a2XIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMDAuMDAwMDAwLCAxMS4wMDAwMDApIj4NCiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTIsMTQuOTk5IEwzLDE0Ljk5OSBMMywxOCBDMywxOC41MTI4MzU4IDMuMzg2MDQwMTksMTguOTM1NTA3MiAzLjg4MzM3ODg3LDE4Ljk5MzI3MjMgTDQsMTkgTDcsMTkgTDcsMjAgTDQsMjAgQzIuODk1NDMwNSwyMCAyLDE5LjEwNDU2OTUgMiwxOCBMMiwxNC45OTkgWiBNMTksMTUgTDIwLDE1IEwyMCwxOCBDMjAsMTkuMTA0NTY5NSAxOS4xMDQ1Njk1LDIwIDE4LDIwIEwxNSwyMCBMMTUsMTkgTDE4LDE5IEMxOC41MTI4MzU4LDE5IDE4LjkzNTUwNzIsMTguNjEzOTU5OCAxOC45OTMyNzIzLDE4LjExNjYyMTEgTDE5LDE4IEwxOSwxNSBaIE0xOCwyIEMxOS4xMDQ1Njk1LDIgMjAsMi44OTU0MzA1IDIwLDQgTDIwLDcgTDE5LDcgTDE5LDQgQzE5LDMuNDg3MTY0MTYgMTguNjEzOTU5OCwzLjA2NDQ5Mjg0IDE4LjExNjYyMTEsMy4wMDY3Mjc3MyBMMTgsMyBMMTUsMyBMMTUsMiBMMTgsMiBaIE03LDIgTDcsMyBMNCwzIEMzLjQ4NzE2NDE2LDMgMy4wNjQ0OTI4NCwzLjM4NjA0MDE5IDMuMDA2NzI3NzMsMy44ODMzNzg4NyBMMyw0IEwzLDYuOTk5IEwyLDYuOTk5IEwyLDQgQzIsMi44OTU0MzA1IDIuODk1NDMwNSwyIDQsMiBMNywyIFoiIGlkPSLlvaLnirbnu5PlkIgiIGZpbGw9IiMzMzMzMzMiIGZpbGwtcnVsZT0ibm9uemVybyI+PC9wYXRoPg0KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0i5paHIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2LjAwMDAwMCwgNC4wMDAwMDApIj4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxyZWN0IGlkPSLnn6nlvaIiIGZpbGw9IiNGNDgwMDAiIHg9IjAiIHk9IjMiIHdpZHRoPSI5LjgxODE4MTgyIiBoZWlnaHQ9IjEuMDkwOTA5MDkiIHJ4PSIwLjU0NTQ1NDU0NSI+PC9yZWN0Pg0KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTEuNjM2MzYzNjQsMy44OTEyNTg4NyBDMi41ODU0MTIwOSw3LjkwNjc5MTkxIDUuMTMwODY2NjMsMTAuMjcwNDI4MyA5LjI3MjcyNzI3LDEwLjk4MjE2OCIgaWQ9Iui3r+W+hC0zOSIgc3Ryb2tlPSIjRjQ4MDAwIiBzdHJva2Utd2lkdGg9IjEuMDkwOTA5MDkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPg0KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTAuNTQ1NDU0NTQ1LDMuODkxMjU4ODcgQzEuNDk0NTAyOTksNy45MDY3OTE5MSA0LjAzOTk1NzU0LDEwLjI3MDQyODMgOC4xODE4MTgxOCwxMC45ODIxNjgiIGlkPSLot6/lvoQtMznlpIfku70iIHN0cm9rZT0iI0Y0ODAwMCIgc3Ryb2tlLXdpZHRoPSIxLjA5MDkwOTA5IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQuMzYzNjM2LCA3LjQzNjcxMykgc2NhbGUoLTEsIDEpIHRyYW5zbGF0ZSgtNC4zNjM2MzYsIC03LjQzNjcxMykgIj48L3BhdGg+DQogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNC4wOTA5MDkwOSwxLjk0NDQwNTIxIEw2LjI3MjcyNzI3LDEuOTQ0NDA1MjEgQzYuNTczOTczNSwxLjk0NDQwNTIxIDYuODE4MTgxODIsMi4xODg2MTM1MiA2LjgxODE4MTgyLDIuNDg5ODU5NzUgQzYuODE4MTgxODIsMi43OTExMDU5OCA2LjU3Mzk3MzUsMy4wMzUzMTQzIDYuMjcyNzI3MjcsMy4wMzUzMTQzIEw0LjA5MDkwOTA5LDMuMDM1MzE0MyBDMy43ODk2NjI4NiwzLjAzNTMxNDMgMy41NDU0NTQ1NSwyLjc5MTEwNTk4IDMuNTQ1NDU0NTUsMi40ODk4NTk3NSBDMy41NDU0NTQ1NSwyLjE4ODYxMzUyIDMuNzg5NjYyODYsMS45NDQ0MDUyMSA0LjA5MDkwOTA5LDEuOTQ0NDA1MjEgWiIgaWQ9IuefqeW9oiIgZmlsbD0iI0Y0ODAwMCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNS4xODE4MTgsIDIuNDg5ODYwKSByb3RhdGUoLTMwMC4wMDAwMDApIHRyYW5zbGF0ZSgtNS4xODE4MTgsIC0yLjQ4OTg2MCkgIj48L3BhdGg+DQogICAgICAgICAgICAgICAgICAgIDwvZz4NCiAgICAgICAgICAgICAgICA8L2c+DQogICAgICAgICAgICA8L2c+DQogICAgICAgIDwvZz4NCiAgICA8L2c+DQo8L3N2Zz4=);
+}
+.liebao-ex-style-hover-btn .liebao-ex-style-search-img-icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 6px;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgd2lkdGg9IjIwcHgiIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAwIDIwIDIwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNjQgKDkzNTM3KSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4NCiAgICA8dGl0bGU+55+p5b2iPC90aXRsZT4NCiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4NCiAgICA8ZyBpZD0i5LiH6IO95aSN5Yi2L+WFqOWxj+eci+Wbvi/mibnph4/kuIvovb0iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPg0KICAgICAgICA8ZyBpZD0i5paw54mILeS8muWRmOWKn+iDvS3mibnph4/kuIvovb0tMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQzNy4wMDAwMDAsIC00ODYuMDAwMDAwKSI+DQogICAgICAgICAgICA8ZyBpZD0i5Y+z6ZSu5Yqf6IO95aSH5Lu9LTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyNS4wMDAwMDAsIDQ3NC4wMDAwMDApIj4NCiAgICAgICAgICAgICAgICA8ZyBpZD0i5pCc55u45Ly85Zu+IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMTIuMDAwMDAwLCAxMi4wMDAwMDApIj4NCiAgICAgICAgICAgICAgICAgICAgPGcgaWQ9IuWbviIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMi4wMDAwMDAsIDIuMDAwMDAwKSI+DQogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTQsMC4xNDI4NTcxNDMgQzE1LjEwNDU2OTUsMC4xNDI4NTcxNDMgMTYsMS4wMzgyODc2NCAxNiwyLjE0Mjg1NzE0IEwxNi4wMDA4Njg5LDguNTI4NTY0NzkgQzE1LjY5NDMxMDgsOC4yNTQwODExOSAxNS4zNTkzNTk0LDguMDEwNjYwMyAxNS4wMDA5NjMsNy44MDMyNTAzNyBMMTUsMi4xNDI4NTcxNCBDMTUsMS42MzAwMjEzIDE0LjYxMzk1OTgsMS4yMDczNDk5OCAxNC4xMTY2MjExLDEuMTQ5NTg0ODcgTDE0LDEuMTQyODU3MTQgTDIsMS4xNDI4NTcxNCBDMS40ODcxNjQxNiwxLjE0Mjg1NzE0IDEuMDY0NDkyODQsMS41Mjg4OTczMyAxLjAwNjcyNzczLDIuMDI2MjM2MDIgTDEsMi4xNDI4NTcxNCBMMSw5LjgwMzg1NzE0IEwyLjg0ODUwNTY2LDcuOTc4NjUyNCBDMy43MjQ5MDc3MSw3LjExMjczNDY1IDUuMDkyNTgzNzgsNy4wMTk3NzgwMyA2LjA3NDU0MDExLDcuNzMzOTkyMzYgTDYuMjE4ODMxMDQsNy44NDcxODI1NyBMNy41NTI0NDg0OSw4Ljk3MjYxNDcgQzcuMzI4MjQ2NDMsOS4yMjAwNTU5MiA3LjEyNDQwNjc4LDkuNDg2MjkwMDEgNi45NDM1NzQwMyw5Ljc2ODY3MjQ1IEw1LjU3MzUzOTk3LDguNjExMTE5MzggQzUuMDIwMTE5MTUsOC4xNDM2NDk0MSA0LjIxOTE2MzI0LDguMTQyMjg5MjggMy42NjU5MjM5NSw4LjU4NzcyMDE5IEwzLjU1MTM0NDc0LDguNjkwMDAxMjcgTDEsMTEuMjA5ODU3MSBMMSwxMy4xNDI4NTcxIEMxLDEzLjY1NTY5MyAxLjM4NjA0MDE5LDE0LjA3ODM2NDMgMS44ODMzNzg4NywxNC4xMzYxMjk0IEwyLDE0LjE0Mjg1NzEgTDYuMTA4ODQ5MTIsMTQuMTQzNTY2IEM2LjE3NTMzOTk4LDE0LjQ4ODEyMzkgNi4yNzEzMDgyNSwxNC44MjIxODEgNi4zOTQwMjU2NCwxNS4xNDMwMDkgTDIsMTUuMTQyODU3MSBDMC44OTU0MzA1LDE1LjE0Mjg1NzEgMCwxNC4yNDc0MjY2IDAsMTMuMTQyODU3MSBMMCwyLjE0Mjg1NzE0IEMwLDEuMDM4Mjg3NjQgMC44OTU0MzA1LDAuMTQyODU3MTQzIDIsMC4xNDI4NTcxNDMgTDE0LDAuMTQyODU3MTQzIFogTTExLDMgQzEyLjEwNDU2OTUsMyAxMywzLjg5NTQzMDUgMTMsNSBDMTMsNi4xMDQ1Njk1IDEyLjEwNDU2OTUsNyAxMSw3IEM5Ljg5NTQzMDUsNyA5LDYuMTA0NTY5NSA5LDUgQzksMy44OTU0MzA1IDkuODk1NDMwNSwzIDExLDMgWiBNMTEsNCBDMTAuNDQ3NzE1Myw0IDEwLDQuNDQ3NzE1MjUgMTAsNSBDMTAsNS41NTIyODQ3NSAxMC40NDc3MTUzLDYgMTEsNiBDMTEuNTUyMjg0Nyw2IDEyLDUuNTUyMjg0NzUgMTIsNSBDMTIsNC40NDc3MTUyNSAxMS41NTIyODQ3LDQgMTEsNCBaIiBpZD0i5b2i54q257uT5ZCIIiBmaWxsPSIjM0MzRTQwIiBmaWxsLXJ1bGU9Im5vbnplcm8iPjwvcGF0aD4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgaWQ9IuakreWchuW9oiIgc3Ryb2tlPSIjRjQ4MDAwIiBjeD0iMTIiIGN5PSIxMyIgcj0iMy41Ij48L2NpcmNsZT4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxyZWN0IGlkPSLnn6nlvaIiIGZpbGw9IiNGNDgwMDAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1LjU5MDk5MCwgMTYuNTkwOTkwKSByb3RhdGUoLTQ1LjAwMDAwMCkgdHJhbnNsYXRlKC0xNS41OTA5OTAsIC0xNi41OTA5OTApICIgeD0iMTUuMDkwOTkwMyIgeT0iMTQuODQwOTkwMyIgd2lkdGg9IjEiIGhlaWdodD0iMy41IiByeD0iMC41Ij48L3JlY3Q+DQogICAgICAgICAgICAgICAgICAgIDwvZz4NCiAgICAgICAgICAgICAgICA8L2c+DQogICAgICAgICAgICA8L2c+DQogICAgICAgIDwvZz4NCiAgICA8L2c+DQo8L3N2Zz4=);
+}
+.liebao-ex-style-vip-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 12px;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgd2lkdGg9IjIwcHgiIGhlaWdodD0iMTJweCIgdmlld0JveD0iMCAwIDIwIDEyIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNjQgKDkzNTM3KSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4NCiAgICA8dGl0bGU+VklQ5qCH562+PC90aXRsZT4NCiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4NCiAgICA8ZyBpZD0idmlwIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4NCiAgICAgICAgPGcgaWQ9IuaWsOeJiC3kvJrlkZjlip/og70t5LiH6IO95aSN5Yi2IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNzk4LjAwMDAwMCwgLTQwOC4wMDAwMDApIiBmaWxsLXJ1bGU9Im5vbnplcm8iPg0KICAgICAgICAgICAgPGcgaWQ9IuS4h+iDveWkjeWItivlm77moIflpIfku70iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc0Mi4wMDAwMDAsIDQwMi4wMDAwMDApIj4NCiAgICAgICAgICAgICAgICA8ZyBpZD0iVklQ5qCH562+IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1Ni4wMDAwMDAsIDYuMDAwMDAwKSI+DQogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik00LDAgTDIwLDAgTDIwLDAgTDIwLDggQzIwLDEwLjIwOTEzOSAxOC4yMDkxMzksMTIgMTYsMTIgTDAsMTIgTDAsMTIgTDAsNCBDLTIuNzA1NDE1ZS0xNiwxLjc5MDg2MSAxLjc5MDg2MSw0LjA1ODEyMjUxZS0xNiA0LDAgWiIgaWQ9IuefqeW9oiIgZmlsbD0iI0ZGRjVFNyI+PC9wYXRoPg0KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNC44NzQyNDg4NiwzIEw2LjA3ODE0NjgxLDYuNjE5NzIzMDMgTDguMDY5NTk5OTUsMyBMOS40NTUyOTAyOSwzIEw2LjQ4MzY4MzcsOC4yODMwNzAyNiBDNi4yMzk1OTg4LDguNzIxNTQzNyA2LjAxNDU4MzAyLDguOTQxMTM2OTEgNS44MDk5MDc2Nyw4Ljk0MTEzNjkxIEM1LjYwNTg2Nzk0LDguOTQxMTM2OTEgNS40Mjg1MjUsOC43MTk0MDQ4MSA1LjI3Nzg3ODg1LDguMjc1OTQwNjEgTDMuNSwzIEw0Ljg3NDI0ODg2LDMgWiBNMTEuMDM1NDg1OCwzIEwxMC4zMTU5NDM4LDguODUyNzI5MjUgTDkuMDQ5NzUzMzksOC44NTI3MjkyNSBMOS43Njg2NTk3MSwzIEwxMS4wMzU0ODU4LDMgWiBNMTUuMTI1ODE0OSwzIEMxNS42ODM5MDQ4LDMgMTYuMTI4MjE1NiwzLjE5NDYzOTQzIDE2LjQ2MTI4OTgsMy41ODQ2MzEyNiBDMTYuODA2NDQxMSwzLjk5NjcyNSAxNi45MzkyODk0LDQuNTMwNzM1NzQgMTYuODU4NTYzNCw1LjE5MjM2NzIxIEwxNi44NTc5Mjc4LDUuMTkyMzY3MjEgQzE2Ljc3NjU2NjIsNS44NTExNDY4MiAxNi41MTM0MTIxLDYuMzg4MDA5NDIgMTYuMDY3MTk0NCw2Ljc5ODY3NzIzIEMxNS42NDk3MDY2LDcuMTg0MzgyNTQgMTUuMTIzODA0LDcuMzkxNTM1MzIgMTQuNTgyOTgwMiw3LjM4MzMwODQ5IEwxMi40NTU1MDA2LDcuMzgzMzA4NDkgTDEyLjI3NDk3OTUsOC44NTIwMTYyOCBMMTEuMDA4MTUzNCw4Ljg1MjAxNjI4IEwxMS4zNzQ5MTY0LDUuODczMjQ4NzQgTDE0Ljg4OTk5MzMsNS44NzMyNDg3NCBDMTUuMjQ3MTgyOCw1Ljg3NzI1OTQ0IDE1LjU0OTk1NDQsNS41Nzk0MTQ0OSAxNS41OTMwMDg2LDUuMTgxNjcyNzQgQzE1LjYxNzc5ODUsNC45NzQ5MTI5IDE1LjU3OTAyNDYsNC44MDk1MDUwNCAxNS40NzQ3OCw0LjY4OTAxMzk2IEMxNS4zNzExNzEsNC41NjkyMzU4NiAxNS4yMzMyMzc2LDQuNTA5MzQ2OCAxNS4wNTk3MDg1LDQuNTA5MzQ2NzkgTDExLjU0MzM2MDQsNC41MDkzNDY3OSBMMTIuNTY1NDY1OSwzIEwxNS4xMjU4MTQ5LDMgWiIgaWQ9InZpcCIgZmlsbD0iI0Y0ODAwMCI+PC9wYXRoPg0KICAgICAgICAgICAgICAgIDwvZz4NCiAgICAgICAgICAgIDwvZz4NCiAgICAgICAgPC9nPg0KICAgIDwvZz4NCjwvc3ZnPg==);
+}
+.liebao-ex-style-hover-btn span {
+  width: 48px;
+  height: 17px;
+  font-size: 12px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 17px;
+}
+.tooltipster-sidetip .tooltipster-content {
+  color: white;
+  line-height: 18px;
+  padding: 8px 24px;
+}
+</style><style type="text/css">#lb_infobar_5168166309{color:#000000 !important;font-weight:normal !important;text-decoration:none !important;margin-top:0 !important;margin-bottom:0 !important;margin-left:0 !important;margin-right:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-left:0 !important;padding-right:0 !important;float:none !important;text-align:left !important;height:37px !important;width:100% !important;background-color:#F5F5F5 !important;background-image:-webkit-linear-gradient(top,#F5F5F5,#EEEDED) !important;border-bottom:1px solid #C0C0C0 !important;box-shadow:inset 0 1px 1px 1px #FFFFFF !important;line-height:36px !important;font-family:'微软雅黑','宋体' !important;z-index:9999999999 !important;margin:0 !important;padding:0 !important;position:fixed !important;top:0px !important;left:0px !important;}#lb_infobar_5168166309,#lb_infobar_5168166309 *{border-radius:0 !important;padding:0 !important;margin:0 !important;}#lb_infobar_5168166309 *{width:auto !important;background:none !important;}#lb_infobar_5168166309 input{border-radius:4px !important;box-shadow:0 1px 2px rgba(0,0,0,.15) !important;font-family:'微软雅黑,','宋体' !important;font-size:12px !important;font-weight:normal !important;text-shadow:none !important;margin:0 0 0 18px !important;padding:0 !important;}#lb_infobar_translate_5168166309{background-color:#FBB016 !important;background-image:-webkit-linear-gradient(top,#FBB016,#ED8A0D) !important;width:78px !important;height:26px !important;border:1px solid #E19D3C !important;color:#FFFFFF !important;cursor:pointer !important;line-height:normal !important;vertical-align:middle !important;}#lb_infobar_translate_5168166309:hover{background-color:#FDBF3F !important;background-image:-webkit-linear-gradient(top,#FDBF3F,#ED8A0D) !important;}#lb_infobar_translate_5168166309:active{background-color:#ED8A0D !important;background-image:-webkit-linear-gradient(top,#ED8A0D,#FBB016) !important;}#lb_infobar_words_5168166309{background-color:#FBB016 !important;background-image:-webkit-linear-gradient(top,#FBB016,#ED8A0D) !important;width:90px !important;height:26px !important;border:1px solid #E19D3C !important;color:#FFFFFF !important;cursor:pointer !important;line-height:normal !important;vertical-align:middle !important;left:360px !important;}#lb_infobar_words_5168166309:hover{background-color:#FDBF3F !important;background-image:-webkit-linear-gradient(top,#FDBF3F,#ED8A0D) !important;}#lb_infobar_words_5168166309:active{background-color:#ED8A0D !important;background-image:-webkit-linear-gradient(top,#ED8A0D,#FBB016) !important;}#lb_infobar_return_5168166309{background-color:#FFFFFF !important;background-image:-webkit-linear-gradient(top,#FFFFFF,#E0DFDF) !important;width:78px !important;height:26px !important;border:1px solid #B0AFAF !important;color:rgba(0,0,0,.5) !important;cursor:pointer !important;line-height:normal !important;vertical-align:middle !important;}#lb_infobar_return_5168166309.lb_infobar_return_words_5168166309{width:130px !important;}#lb_infobar_return_5168166309:hover{background-color:#EDECEC !important;background-image:-webkit-linear-gradient(top,#FFFFFF,#EDECEC) !important;}#lb_infobar_return_5168166309:active{background-color:#E0DFDF !important;background-image:-webkit-linear-gradient(top,#E0DFDF,#FFFFFF) !important;}#lb_infobar_5168166309 a{text-decoration:underline !important;font-size:12px !important;color:#999999 !important;cursor:pointer !important;}#lb_infobar_5168166309 a:hover{color:#FC9500 !important;}#lb_infobar_5168166309 a:active{color:#D68003 !important;}#lb_infobar_close_5168166309{background-position:-66px -27px !important;cursor:pointer !important;position:absolute !important;top:0 !important;right:1em !important;line-height:36px !important;}#lb_infobar_close_5168166309:hover{background-position:-66px -41px !important;}#lb_infobar_close_5168166309:active{background-position:-66px -54px !important;}#lb_infobar_notice_5168166309{line-height:36px !important;margin-left:55px !important;font-size:14px !important;vertical-align:middle !important;}#lb_infobar_powered_5168166309{padding-left:18px !important;font-size:10px !important;color:#979797 !important;font-family:'Arial' !important;font-style:italic !important;}#lb_infobar_ignore_5168166309{line-height:36px !important;margin-right:3em !important;position:absolute !important;top:0 !important;right:0 !important;}#lb_infobar_manual_5168166309{line-height:36px !important;margin-right:12em !important;position:absolute !important;top:0 !important;right:0 !important;}#lb_infobar_icon_5168166309{position:absolute !important;top:0 !important;left:0 !important;height:37px !important;width:42px !important;color:#fff !important;font-size:24px !important;text-align:center !important;background-repeat:no-repeat !important;background-position:-80px 0 !important;}#lb_infobar_translate_5168166309.lb_infobar_btn_inactive_5168166309,#lb_infobar_words_5168166309.lb_infobar_btn_inactive_5168166309{background-color:#FFFFFF !important;background-image:-webkit-linear-gradient(top,#FFFFFF,#E0DFDF) !important;border:1px solid #B0AFAF !important;color:#808080 !important;}#lb_infobar_translate_5168166309.lb_infobar_btn_inactive_5168166309:hover,#lb_infobar_words_5168166309.lb_infobar_btn_inactive_5168166309:hover{background-color:#EDECEC !important;background-image:-webkit-linear-gradient(top,#FFFFFF,#EDECEC) !important;}#lb_infobar_translate_5168166309.lb_infobar_btn_inactive_5168166309:hover,#lb_infobar_words_5168166309.lb_infobar_btn_inactive_5168166309:active{background-color:#E0DFDF !important;background-image:-webkit-linear-gradient(top,#E0DFDF,#FFFFFF) !important;}#lb_infobar_hover_5168166309:before{content:" " !important;position:absolute !important;border:5px solid transparent !important;border-top:5px solid #000 !important;bottom: -10px !important;left: 50% !important;}#lb_infobar_hover_5168166309:after{content:" " !important;position:absolute !important;border:5px solid transparent !important;border-top:5px solid #fff !important;bottom: -9px !important;left: 50% !important;}#lb_infobar_hover_5168166309{line-height:1.2 !important;font-size:12px !important;min-width:150px !important;position:fixed !important;background:#fff !important;border:1px solid #333 !important;border-radius:3px !important;padding:10px !important;color:#333 !important;z-index:9999999999 !important;}#lb_infobar_hover_5168166309.lb_infobar_hover_below:before{content:" " !important;position:absolute !important;border:5px solid transparent !important;border-bottom:5px solid #000 !important;top:-10px !important;left:50% !important;bottom:auto !important;}#lb_infobar_hover_5168166309.lb_infobar_hover_below:after{content:" " !important;position:absolute !important;border:5px solid transparent !important;border-bottom:5px solid #fff !important;top: -9px !important;left: 50% !important;bottom:auto !important;}</style></head>
+<body style="margin-top: 46px !important; position: relative !important;">
+<div class="pod">
+<!-- INDEX START -->
+<h3 id="TOP">Index</h3>
+
+<ul><li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#NAME">NAME</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#SYNOPSIS">SYNOPSIS</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#DESCRIPTION">DESCRIPTION</a>
+<ul><li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#FEATURES">FEATURES</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#TIME_REPRESENTATION">TIME REPRESENTATION</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#FORK_SUPPORT">FORK SUPPORT</a></li>
+</ul>
+</li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#INITIALISATION_INTEGRATION">INITIALISATION/INTEGRATION</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#HIGH_LEVEL_REQUEST_API">HIGH LEVEL REQUEST API</a>
+<ul><li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#REQUEST_SUBMISSION_AND_RESULT_PROCES">REQUEST SUBMISSION AND RESULT PROCESSING</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#CANCELLING_REQUESTS">CANCELLING REQUESTS</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#AVAILABLE_REQUESTS">AVAILABLE REQUESTS</a>
+<ul><li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#POSIX_API_WRAPPERS">POSIX API WRAPPERS</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#READING_DIRECTORIES">READING DIRECTORIES</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#OS_SPECIFIC_CALL_WRAPPERS">OS-SPECIFIC CALL WRAPPERS</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#LIBEIO_SPECIFIC_REQUESTS">LIBEIO-SPECIFIC REQUESTS</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#GROUPING_AND_LIMITING_REQUESTS">GROUPING AND LIMITING REQUESTS</a>
+<ul><li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#GROUP_REQUEST_LIFETIME">GROUP REQUEST LIFETIME</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#CREATING_COMPOSITE_REQUESTS">CREATING COMPOSITE REQUESTS</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#REQUEST_LIMITING">REQUEST LIMITING</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#LOW_LEVEL_REQUEST_API">LOW LEVEL REQUEST API</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#ANATOMY_AND_LIFETIME_OF_AN_EIO_REQUE">ANATOMY AND LIFETIME OF AN EIO REQUEST</a>
+<ul><li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#CONFIGURATION">CONFIGURATION</a></li>
+</ul>
+</li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#EMBEDDING">EMBEDDING</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#COMPILETIME_CONFIGURATION">COMPILETIME CONFIGURATION</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#PORTABILITY_REQUIREMENTS">PORTABILITY REQUIREMENTS</a></li>
+<li><a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#AUTHOR">AUTHOR</a>
+</li>
+</ul><hr>
+<!-- INDEX END -->
+
+<h1 id="NAME">NAME</h1>
+<div id="NAME_CONTENT">
+<p>libeio - truly asynchronous POSIX I/O</p>
+
+</div>
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+<div id="SYNOPSIS_CONTENT">
+<pre>  #include &lt;eio.h&gt;
+
+</pre>
+
+</div>
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+<div id="DESCRIPTION_CONTENT">
+<p>The newest version of this document is also available as an html-formatted
+web page you might find easier to navigate when reading it for the first
+time: <a href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod">http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod</a>.</p>
+<p>Note that this library is a by-product of the <code>IO::AIO</code> perl
+module, and many of the subtler points regarding requests lifetime
+and so on are only documented in its documentation at the
+moment: <a href="http://pod.tst.eu/http://cvs.schmorp.de/IO-AIO/AIO.pm">http://pod.tst.eu/http://cvs.schmorp.de/IO-AIO/AIO.pm</a>.</p>
+
+</div>
+<h2 id="FEATURES">FEATURES</h2>
+<div id="FEATURES_CONTENT">
+<p>This library provides fully asynchronous versions of most POSIX functions
+dealing with I/O. Unlike most asynchronous libraries, this not only
+includes <code>read</code> and <code>write</code>, but also <code>open</code>, <code>stat</code>, <code>unlink</code> and
+similar functions, as well as less rarely ones such as <code>mknod</code>, <code>futime</code>
+or <code>readlink</code>.</p>
+<p>It also offers wrappers around <code>sendfile</code> (Solaris, Linux, HP-UX and
+FreeBSD, with emulation on other platforms) and <code>readahead</code> (Linux, with
+emulation elsewhere).</p>
+<p>The goal is to enable you to write fully non-blocking programs. For
+example, in a game server, you would not want to freeze for a few seconds
+just because the server is running a backup and you happen to call
+<code>readdir</code>.</p>
+
+</div>
+<h2 id="TIME_REPRESENTATION">TIME REPRESENTATION</h2>
+<div id="TIME_REPRESENTATION_CONTENT">
+<p>Libeio represents time as a single floating point number, representing the
+(fractional) number of seconds since the (POSIX) epoch (somewhere near
+the beginning of 1970, details are complicated, don't ask). This type is
+called <code>eio_tstamp</code>, but it is guaranteed to be of type <code>double</code> (or
+better), so you can freely use <code>double</code> yourself.</p>
+<p>Unlike the name component <code>stamp</code> might indicate, it is also used for
+time differences throughout libeio.</p>
+
+</div>
+<h2 id="FORK_SUPPORT">FORK SUPPORT</h2>
+<div id="FORK_SUPPORT_CONTENT">
+<p>Usage of pthreads in a program changes the semantics of fork
+considerably. Specifically, only async-safe functions can be called after
+fork. Libeio uses pthreads, so this applies, and makes using fork hard for
+anything but relatively fork + exec uses.</p>
+<p>This library only works in the process that initialised it: Forking is
+fully supported, but using libeio in any other process than the one that
+called <code>eio_init</code> is not.</p>
+<p>You might get around by not <i>using</i> libeio before (or after) forking in
+the parent, and using it in the child afterwards. You could also try to
+call the <cite>eio_init</cite> function again in the child, which will brutally
+reinitialise all data structures, which isn't POSIX conformant, but
+typically works.</p>
+<p>Otherwise, the only recommendation you should follow is: treat fork code
+the same way you treat signal handlers, and only ever call <code>eio_init</code> in
+the process that uses it, and only once ever.</p>
+
+</div>
+<h1 id="INITIALISATION_INTEGRATION">INITIALISATION/INTEGRATION</h1>
+<div id="INITIALISATION_INTEGRATION_CONTENT">
+<p>Before you can call any eio functions you first have to initialise the
+library. The library integrates into any event loop, but can also be used
+without one, including in polling mode.</p>
+<p>You have to provide the necessary glue yourself, however.</p>
+<dl>
+	<dt>int eio_init (void (*want_poll)(void), void (*done_poll)(void))</dt>
+	<dd>
+		<p>This function initialises the library. On success it returns <code>0</code>, on
+failure it returns <code>-1</code> and sets <code>errno</code> appropriately.</p>
+		<p>It accepts two function pointers specifying callbacks as argument, both of
+which can be <code>0</code>, in which case the callback isn't called.</p>
+		<p>There is currently no way to change these callbacks later, or to
+"uninitialise" the library again.</p>
+	</dd>
+	<dt>want_poll callback</dt>
+	<dd>
+		<p>The <code>want_poll</code> callback is invoked whenever libeio wants attention (i.e.
+it wants to be polled by calling <code>eio_poll</code>). It is "edge-triggered",
+that is, it will only be called once when eio wants attention, until all
+pending requests have been handled.</p>
+		<p>This callback is called while locks are being held, so <i>you must
+not call any libeio functions inside this callback</i>. That includes
+<code>eio_poll</code>. What you should do is notify some other thread, or wake up
+your event loop, and then call <code>eio_poll</code>.</p>
+	</dd>
+	<dt>done_poll callback</dt>
+	<dd>
+		<p>This callback is invoked when libeio detects that all pending requests
+have been handled. It is "edge-triggered", that is, it will only be
+called once after <code>want_poll</code>. To put it differently, <code>want_poll</code> and
+<code>done_poll</code> are invoked in pairs: after <code>want_poll</code> you have to call
+<code>eio_poll ()</code> until either <code>eio_poll</code> indicates that everything has been
+handled or <code>done_poll</code> has been called, which signals the same - only one
+method is needed.</p>
+		<p>Note that <code>eio_poll</code> might return after <code>done_poll</code> and <code>want_poll</code>
+have been called again, so watch out for races in your code.</p>
+		<p>It is quite common to have an empty <code>done_call</code> callback and only use
+the return value from <code>eio_poll</code>, or, when <code>eio_poll</code> is configured to
+handle all outstanding replies, it's enough to call <code>eio_poll</code> once.</p>
+		<p>As with <code>want_poll</code>, this callback is called while locks are being held,
+so you <i>must not call any libeio functions from within this callback</i>.</p>
+	</dd>
+	<dt>int eio_poll ()</dt>
+	<dd>
+		<p>This function has to be called whenever there are pending requests that
+need finishing. You usually call this after <code>want_poll</code> has indicated
+that you should do so, but you can also call this function regularly to
+poll for new results.</p>
+		<p>If any request invocation returns a non-zero value, then <code>eio_poll ()</code>
+immediately returns with that value as return value.</p>
+		<p>Otherwise, if all requests could be handled, it returns <code>0</code>. If for some
+reason not all requests have been handled, i.e. some are still pending, it
+returns <code>-1</code>.</p>
+	</dd>
+</dl>
+<p>For libev, you would typically use an <code>ev_async</code> watcher: the
+<code>want_poll</code> callback would invoke <code>ev_async_send</code> to wake up the event
+loop. Inside the callback set for the watcher, one would call <code>eio_poll
+()</code>.</p>
+<p>If <code>eio_poll ()</code> is configured to not handle all results in one go
+(i.e. it returns <code>-1</code>) then you should start an idle watcher that calls
+<code>eio_poll</code> until it returns something <code>!= -1</code>.</p>
+<p>A full-featured connector between libeio and libev would look as follows
+(if <code>eio_poll</code> is handling all requests, it can of course be simplified a
+lot by removing the idle watcher logic):</p>
+<pre>  static struct ev_loop *loop;
+  static ev_idle repeat_watcher;
+  static ev_async ready_watcher;
+
+  /* idle watcher callback, only used when eio_poll */
+  /* didn't handle all results in one call */
+  static void
+  repeat (EV_P_ ev_idle *w, int revents)
+  {
+    if (eio_poll () != -1)
+      ev_idle_stop (EV_A_ w);
+  }
+
+  /* eio has some results, process them */
+  static void
+  ready (EV_P_ ev_async *w, int revents)
+  {
+    if (eio_poll () == -1)
+      ev_idle_start (EV_A_ &amp;repeat_watcher);
+  }
+
+  /* wake up the event loop */
+  static void
+  want_poll (void)
+  {
+    ev_async_send (loop, &amp;ready_watcher)
+  }
+
+  void
+  my_init_eio ()
+  {
+    loop = EV_DEFAULT;
+
+    ev_idle_init (&amp;repeat_watcher, repeat);
+    ev_async_init (&amp;ready_watcher, ready);
+    ev_async_start (loop, &amp;watcher);
+
+    eio_init (want_poll, 0);
+  }
+
+</pre>
+<p>For most other event loops, you would typically use a pipe - the event
+loop should be told to wait for read readiness on the read end. In
+<code>want_poll</code> you would write a single byte, in <code>done_poll</code> you would try
+to read that byte, and in the callback for the read end, you would call
+<code>eio_poll</code>.</p>
+<p>You don't have to take special care in the case <code>eio_poll</code> doesn't handle
+all requests, as the done callback will not be invoked, so the event loop
+will still signal readiness for the pipe until <i>all</i> results have been
+processed.</p>
+
+</div>
+<h1 id="HIGH_LEVEL_REQUEST_API">HIGH LEVEL REQUEST API</h1>
+<div id="HIGH_LEVEL_REQUEST_API_CONTENT">
+<p>Libeio has both a high-level API, which consists of calling a request
+function with a callback to be called on completion, and a low-level API
+where you fill out request structures and submit them.</p>
+<p>This section describes the high-level API.</p>
+
+</div>
+<h2 id="REQUEST_SUBMISSION_AND_RESULT_PROCES">REQUEST SUBMISSION AND RESULT PROCESSING</h2>
+<div id="REQUEST_SUBMISSION_AND_RESULT_PROCES-2">
+<p>You submit a request by calling the relevant <code>eio_TYPE</code> function with the
+required parameters, a callback of type <code>int (*eio_cb)(eio_req *req)</code>
+(called <code>eio_cb</code> below) and a freely usable <code>void *data</code> argument.</p>
+<p>The return value will either be 0, in case something went really wrong
+(which can basically only happen on very fatal errors, such as <code>malloc</code>
+returning 0, which is rather unlikely), or a pointer to the newly-created
+and submitted <code>eio_req *</code>.</p>
+<p>The callback will be called with an <code>eio_req *</code> which contains the
+results of the request. The members you can access inside that structure
+vary from request to request, except for:</p>
+<dl>
+	<dt><code>ssize_t result</code></dt>
+	<dd>
+		<p>This contains the result value from the call (usually the same as the
+syscall of the same name).</p>
+	</dd>
+	<dt><code>int errorno</code></dt>
+	<dd>
+		<p>This contains the value of <code>errno</code> after the call.</p>
+	</dd>
+	<dt><code>void *data</code></dt>
+	<dd>
+		<p>The <code>void *data</code> member simply stores the value of the <code>data</code> argument.</p>
+	</dd>
+</dl>
+<p>Members not explicitly described as accessible must not be
+accessed. Specifically, there is no guarantee that any members will still
+have the value they had when the request was submitted.</p>
+<p>The return value of the callback is normally <code>0</code>, which tells libeio to
+continue normally. If a callback returns a nonzero value, libeio will
+stop processing results (in <code>eio_poll</code>) and will return the value to its
+caller.</p>
+<p>Memory areas passed to libeio wrappers must stay valid as long as a
+request executes, with the exception of paths, which are being copied
+internally. Any memory libeio itself allocates will be freed after the
+finish callback has been called. If you want to manage all memory passed
+to libeio yourself you can use the low-level API.</p>
+<p>For example, to open a file, you could do this:</p>
+<pre>  static int
+  file_open_done (eio_req *req)
+  {
+    if (req-&gt;result &lt; 0)
+      {
+        /* open() returned -1 */
+        errno = req-&gt;errorno;
+        perror ("open");
+      }
+    else
+      {
+        int fd = req-&gt;result;
+        /* now we have the new fd in fd */
+      }
+
+    return 0;
+  }
+
+  /* the first three arguments are passed to open(2) */
+  /* the remaining are priority, callback and data */
+  if (!eio_open ("/etc/passwd", O_RDONLY, 0, 0, file_open_done, 0))
+    abort (); /* something went wrong, we will all die!!! */
+
+</pre>
+<p>Note that you additionally need to call <code>eio_poll</code> when the <code>want_cb</code>
+indicates that requests are ready to be processed.</p>
+
+</div>
+<h2 id="CANCELLING_REQUESTS">CANCELLING REQUESTS</h2>
+<div id="CANCELLING_REQUESTS_CONTENT">
+<p>Sometimes the need for a request goes away before the request is
+finished. In that case, one can cancel the request by a call to
+<code>eio_cancel</code>:</p>
+<dl>
+	<dt>eio_cancel (eio_req *req)</dt>
+	<dd>
+		<p>Cancel the request (and all its subrequests). If the request is currently
+executing it might still continue to execute, and in other cases it might
+still take a while till the request is cancelled.</p>
+		<p>When cancelled, the finish callback will not be invoked.</p>
+		<p><code>EIO_CANCELLED</code> is still true for requests that have successfully
+executed, as long as <code>eio_cancel</code> was called on them at some point.</p>
+	</dd>
+</dl>
+
+</div>
+<h2 id="AVAILABLE_REQUESTS">AVAILABLE REQUESTS</h2>
+<div id="AVAILABLE_REQUESTS_CONTENT">
+<p>The following request functions are available. <i>All</i> of them return the
+<code>eio_req *</code> on success and <code>0</code> on failure, and <i>all</i> of them have the
+same three trailing arguments: <code>pri</code>, <code>cb</code> and <code>data</code>. The <code>cb</code> is
+mandatory, but in most cases, you pass in <code>0</code> as <code>pri</code> and <code>0</code> or some
+custom data value as <code>data</code>.</p>
+
+</div>
+<h3 id="POSIX_API_WRAPPERS">POSIX API WRAPPERS</h3>
+<div id="POSIX_API_WRAPPERS_CONTENT">
+<p>These requests simply wrap the POSIX call of the same name, with the same
+arguments. If a function is not implemented by the OS and cannot be emulated
+in some way, then all of these return <code>-1</code> and set <code>errorno</code> to <code>ENOSYS</code>.</p>
+<dl>
+	<dt>eio_open      (const char *path, int flags, mode_t mode, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_truncate  (const char *path, off_t offset, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_chown     (const char *path, uid_t uid, gid_t gid, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_chmod     (const char *path, mode_t mode, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_mkdir     (const char *path, mode_t mode, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_rmdir     (const char *path, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_unlink    (const char *path, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_utime     (const char *path, eio_tstamp atime, eio_tstamp mtime, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_mknod     (const char *path, mode_t mode, dev_t dev, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_link      (const char *path, const char *new_path, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_symlink   (const char *path, const char *new_path, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_rename    (const char *path, const char *new_path, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_mlock     (void *addr, size_t length, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_close     (int fd, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_sync      (int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_fsync     (int fd, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_fdatasync (int fd, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_futime    (int fd, eio_tstamp atime, eio_tstamp mtime, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_ftruncate (int fd, off_t offset, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_fchmod    (int fd, mode_t mode, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_fchown    (int fd, uid_t uid, gid_t gid, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_dup2      (int fd, int fd2, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>These have the same semantics as the syscall of the same name, their
+return value is available as <code>req-&gt;result</code> later.</p>
+	</dd>
+	<dt>eio_read      (int fd, void *buf, size_t length, off_t offset, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_write     (int fd, void *buf, size_t length, off_t offset, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>These two requests are called <code>read</code> and <code>write</code>, but actually wrap
+<code>pread</code> and <code>pwrite</code>. On systems that lack these calls (such as cygwin),
+libeio uses lseek/read_or_write/lseek and a mutex to serialise the
+requests, so all these requests run serially and do not disturb each
+other. However, they still disturb the file offset while they run, so it's
+not safe to call these functions concurrently with non-libeio functions on
+the same fd on these systems.</p>
+		<p>Not surprisingly, pread and pwrite are not thread-safe on Darwin (OS/X),
+so it is advised not to submit multiple requests on the same fd on this
+horrible pile of garbage.</p>
+	</dd>
+	<dt>eio_mlockall  (int flags, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Like <code>mlockall</code>, but the flag value constants are called
+<code>EIO_MCL_CURRENT</code> and <code>EIO_MCL_FUTURE</code>.</p>
+	</dd>
+	<dt>eio_msync     (void *addr, size_t length, int flags, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Just like msync, except that the flag values are called <code>EIO_MS_ASYNC</code>,
+<code>EIO_MS_INVALIDATE</code> and <code>EIO_MS_SYNC</code>.</p>
+	</dd>
+	<dt>eio_readlink  (const char *path, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>If successful, the path read by <code>readlink(2)</code> can be accessed via <code>req-&gt;ptr2</code> and is <i>NOT</i> null-terminated, with the length specified as
+<code>req-&gt;result</code>.</p>
+<pre>  if (req-&gt;result &gt;= 0)
+    {
+      char *target = strndup ((char *)req-&gt;ptr2, req-&gt;result);
+
+      free (target);
+    }
+
+</pre>
+	</dd>
+	<dt>eio_realpath  (const char *path, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Similar to the realpath libc function, but unlike that one, <code>req-&gt;result</code> is <code>-1</code> on failure. On success, the result is the length
+of the returned path in <code>ptr2</code> (which is <i>NOT</i> 0-terminated) - this is
+similar to readlink.</p>
+	</dd>
+	<dt>eio_stat      (const char *path, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_lstat     (const char *path, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_fstat     (int fd, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Stats a file - if <code>req-&gt;result</code> indicates success, then you can
+access the <code>struct stat</code>-like structure via <code>req-&gt;ptr2</code>:</p>
+<pre>  EIO_STRUCT_STAT *statdata = (EIO_STRUCT_STAT *)req-&gt;ptr2;
+
+</pre>
+	</dd>
+	<dt>eio_statvfs   (const char *path, int pri, eio_cb cb, void *data)</dt>
+	<dt>eio_fstatvfs  (int fd, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Stats a filesystem - if <code>req-&gt;result</code> indicates success, then you can
+access the <code>struct statvfs</code>-like structure via <code>req-&gt;ptr2</code>:</p>
+<pre>  EIO_STRUCT_STATVFS *statdata = (EIO_STRUCT_STATVFS *)req-&gt;ptr2;
+
+</pre>
+	</dd>
+</dl>
+
+</div>
+<h3 id="READING_DIRECTORIES">READING DIRECTORIES</h3>
+<div id="READING_DIRECTORIES_CONTENT">
+<p>Reading directories sounds simple, but can be rather demanding, especially
+if you want to do stuff such as traversing a directory hierarchy or
+processing all files in a directory. Libeio can assist these complex tasks
+with it's <code>eio_readdir</code> call.</p>
+<dl>
+	<dt>eio_readdir (const char *path, int flags, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>This is a very complex call. It basically reads through a whole directory
+(via the <code>opendir</code>, <code>readdir</code> and <code>closedir</code> calls) and returns either
+the names or an array of <code>struct eio_dirent</code>, depending on the <code>flags</code>
+argument.</p>
+		<p>The <code>req-&gt;result</code> indicates either the number of files found, or
+<code>-1</code> on error. On success, null-terminated names can be found as <code>req-&gt;ptr2</code>,
+and <code>struct eio_dirents</code>, if requested by <code>flags</code>, can be found via <code>req-&gt;ptr1</code>.</p>
+		<p>Here is an example that prints all the names:</p>
+<pre>  int i;
+  char *names = (char *)req-&gt;ptr2;
+
+  for (i = 0; i &lt; req-&gt;result; ++i)
+    {
+      printf ("name #%d: %s\n", i, names);
+
+      /* move to next name */
+      names += strlen (names) + 1;
+    }
+
+</pre>
+		<p>Pseudo-entries such as <cite>.</cite> and <cite>..</cite> are never returned by <code>eio_readdir</code>.</p>
+		<p><code>flags</code> can be any combination of:</p>
+		<p>
+			</p><dl>
+				<dt>EIO_READDIR_DENTS</dt>
+				<dd>
+					<p>If this flag is specified, then, in addition to the names in <code>ptr2</code>,
+also an array of <code>struct eio_dirent</code> is returned, in <code>ptr1</code>. A <code>struct
+eio_dirent</code> looks like this:</p>
+<pre>  struct eio_dirent
+  {
+    int nameofs; /* offset of null-terminated name string in (char *)req-&gt;ptr2 */
+    unsigned short namelen; /* size of filename without trailing 0 */
+    unsigned char type; /* one of EIO_DT_* */
+    signed char score; /* internal use */
+    ino_t inode; /* the inode number, if available, otherwise unspecified */
+  };
+
+</pre>
+					<p>The only members you normally would access are <code>nameofs</code>, which is the
+byte-offset from <code>ptr2</code> to the start of the name, <code>namelen</code> and <code>type</code>.</p>
+					<p><code>type</code> can be one of:</p>
+					<p><code>EIO_DT_UNKNOWN</code> - if the type is not known (very common) and you have to <code>stat</code>
+the name yourself if you need to know,
+one of the "standard" POSIX file types (<code>EIO_DT_REG</code>, <code>EIO_DT_DIR</code>, <code>EIO_DT_LNK</code>,
+<code>EIO_DT_FIFO</code>, <code>EIO_DT_SOCK</code>, <code>EIO_DT_CHR</code>, <code>EIO_DT_BLK</code>)
+or some OS-specific type (currently
+<code>EIO_DT_MPC</code> - multiplexed char device (v7+coherent),
+<code>EIO_DT_NAM</code> - xenix special named file,
+<code>EIO_DT_MPB</code> - multiplexed block device (v7+coherent),
+<code>EIO_DT_NWK</code> - HP-UX network special,
+<code>EIO_DT_CMP</code> - VxFS compressed,
+<code>EIO_DT_DOOR</code> - solaris door, or
+<code>EIO_DT_WHT</code>).</p>
+					<p>This example prints all names and their type:</p>
+<pre>  int i;
+  struct eio_dirent *ents = (struct eio_dirent *)req-&gt;ptr1;
+  char *names = (char *)req-&gt;ptr2;
+
+  for (i = 0; i &lt; req-&gt;result; ++i)
+    {
+      struct eio_dirent *ent = ents + i;
+      char *name = names + ent-&gt;nameofs;
+
+      printf ("name #%d: %s (type %d)\n", i, name, ent-&gt;type);
+    }
+
+</pre>
+				</dd>
+				<dt>EIO_READDIR_DIRS_FIRST</dt>
+				<dd>
+					<p>When this flag is specified, then the names will be returned in an order
+where likely directories come first, in optimal <code>stat</code> order. This is
+useful when you need to quickly find directories, or you want to find all
+directories while avoiding to stat() each entry.</p>
+					<p>If the system returns type information in readdir, then this is used
+to find directories directly. Otherwise, likely directories are names
+beginning with ".", or otherwise names with no dots, of which names with
+short names are tried first.</p>
+				</dd>
+				<dt>EIO_READDIR_STAT_ORDER</dt>
+				<dd>
+					<p>When this flag is specified, then the names will be returned in an order
+suitable for stat()'ing each one. That is, when you plan to stat()
+all files in the given directory, then the returned order will likely
+be fastest.</p>
+					<p>If both this flag and <code>EIO_READDIR_DIRS_FIRST</code> are specified, then the
+likely directories come first, resulting in a less optimal stat order.</p>
+				</dd>
+				<dt>EIO_READDIR_FOUND_UNKNOWN</dt>
+				<dd>
+					<p>This flag should not be specified when calling <code>eio_readdir</code>. Instead,
+it is being set by <code>eio_readdir</code> (you can access the <code>flags</code> via <code>req-&gt;int1</code>, when any of the <code>type</code>'s found were <code>EIO_DT_UNKNOWN</code>. The
+absence of this flag therefore indicates that all <code>type</code>'s are known,
+which can be used to speed up some algorithms.</p>
+					<p>A typical use case would be to identify all subdirectories within a
+directory - you would ask <code>eio_readdir</code> for <code>EIO_READDIR_DIRS_FIRST</code>. If
+then this flag is <i>NOT</i> set, then all the entries at the beginning of the
+returned array of type <code>EIO_DT_DIR</code> are the directories. Otherwise, you
+should start <code>stat()</code>'ing the entries starting at the beginning of the
+array, stopping as soon as you found all directories (the count can be
+deduced by the link count of the directory).</p>
+				</dd>
+			</dl>
+		<p></p>
+	</dd>
+</dl>
+
+</div>
+<h3 id="OS_SPECIFIC_CALL_WRAPPERS">OS-SPECIFIC CALL WRAPPERS</h3>
+<div id="OS_SPECIFIC_CALL_WRAPPERS_CONTENT">
+<p>These wrap OS-specific calls (usually Linux ones), and might or might not
+be emulated on other operating systems. Calls that are not emulated will
+return <code>-1</code> and set <code>errno</code> to <code>ENOSYS</code>.</p>
+<dl>
+	<dt>eio_sendfile (int out_fd, int in_fd, off_t in_offset, size_t length, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Wraps the <code>sendfile</code> syscall. The arguments follow the Linux version, but
+libeio supports and will use similar calls on FreeBSD, HP/UX, Solaris and
+Darwin.</p>
+		<p>If the OS doesn't support some sendfile-like call, or the call fails,
+indicating support for the given file descriptor type (for example,
+Linux's sendfile might not support file to file copies), then libeio will
+emulate the call in userspace, so there are almost no limitations on its
+use.</p>
+	</dd>
+	<dt>eio_readahead (int fd, off_t offset, size_t length, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Calls <code>readahead(2)</code>. If the syscall is missing, then the call is
+emulated by simply reading the data (currently in 64kiB chunks).</p>
+	</dd>
+	<dt>eio_syncfs (int fd, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Calls Linux' <code>syncfs</code> syscall, if available. Returns <code>-1</code> and sets
+<code>errno</code> to <code>ENOSYS</code> if the call is missing <i>but still calls sync()</i>,
+if the <code>fd</code> is <code>&gt;= 0</code>, so you can probe for the availability of the
+syscall with a negative <code>fd</code> argument and checking for <code>-1/ENOSYS</code>.</p>
+	</dd>
+	<dt>eio_sync_file_range (int fd, off_t offset, size_t nbytes, unsigned int flags, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Calls <code>sync_file_range</code>. If the syscall is missing, then this is the same
+as calling <code>fdatasync</code>.</p>
+		<p>Flags can be any combination of <code>EIO_SYNC_FILE_RANGE_WAIT_BEFORE</code>,
+<code>EIO_SYNC_FILE_RANGE_WRITE</code> and <code>EIO_SYNC_FILE_RANGE_WAIT_AFTER</code>.</p>
+	</dd>
+	<dt>eio_fallocate (int fd, int mode, off_t offset, off_t len, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Calls <code>fallocate</code> (note: <i>NOT</i> <code>posix_fallocate</code>!). If the syscall is
+missing, then it returns failure and sets <code>errno</code> to <code>ENOSYS</code>.</p>
+		<p>The <code>mode</code> argument can be <code>0</code> (for behaviour similar to
+<code>posix_fallocate</code>), or <code>EIO_FALLOC_FL_KEEP_SIZE</code>, which keeps the size
+of the file unchanged (but still preallocates space beyond end of file).</p>
+	</dd>
+</dl>
+
+</div>
+<h3 id="LIBEIO_SPECIFIC_REQUESTS">LIBEIO-SPECIFIC REQUESTS</h3>
+<div id="LIBEIO_SPECIFIC_REQUESTS_CONTENT">
+<p>These requests are specific to libeio and do not correspond to any OS call.</p>
+<dl>
+	<dt>eio_mtouch (void *addr, size_t length, int flags, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Reads (<code>flags == 0</code>) or modifies (<code>flags == EIO_MT_MODIFY</code>) the given
+memory area, page-wise, that is, it reads (or reads and writes back) the
+first octet of every page that spans the memory area.</p>
+		<p>This can be used to page in some mmapped file, or dirty some pages. Note
+that dirtying is an unlocked read-write access, so races can ensue when
+the some other thread modifies the data stored in that memory area.</p>
+	</dd>
+	<dt>eio_custom (void (*)(eio_req *) execute, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Executes a custom request, i.e., a user-specified callback.</p>
+		<p>The callback gets the <code>eio_req *</code> as parameter and is expected to read
+and modify any request-specific members. Specifically, it should set <code>req-&gt;result</code> to the result value, just like other requests.</p>
+		<p>Here is an example that simply calls <code>open</code>, like <code>eio_open</code>, but it
+uses the <code>data</code> member as filename and uses a hardcoded <code>O_RDONLY</code>. If
+you want to pass more/other parameters, you either need to pass some
+struct or so via <code>data</code> or provide your own wrapper using the low-level
+API.</p>
+<pre>  static int
+  my_open_done (eio_req *req)
+  {
+    int fd = req-&gt;result;
+
+    return 0;
+  }
+
+  static void
+  my_open (eio_req *req)
+  {
+    req-&gt;result = open (req-&gt;data, O_RDONLY);
+  }
+
+  eio_custom (my_open, 0, my_open_done, "/etc/passwd");
+
+</pre>
+	</dd>
+	<dt>eio_busy (eio_tstamp delay, int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>This is a request that takes <code>delay</code> seconds to execute, but otherwise
+does nothing - it simply puts one of the worker threads to sleep for this
+long.</p>
+		<p>This request can be used to artificially increase load, e.g. for debugging
+or benchmarking reasons.</p>
+	</dd>
+	<dt>eio_nop (int pri, eio_cb cb, void *data)</dt>
+	<dd>
+		<p>This request does nothing, except go through the whole request cycle. This
+can be used to measure latency or in some cases to simplify code, but is
+not really of much use.</p>
+	</dd>
+</dl>
+
+</div>
+<h3 id="GROUPING_AND_LIMITING_REQUESTS">GROUPING AND LIMITING REQUESTS</h3>
+<div id="GROUPING_AND_LIMITING_REQUESTS_CONTE">
+<p>There is one more rather special request, <code>eio_grp</code>. It is a very special
+aio request: Instead of doing something, it is a container for other eio
+requests.</p>
+<p>There are two primary use cases for this: a) bundle many requests into a
+single, composite, request with a definite callback and the ability to
+cancel the whole request with its subrequests and b) limiting the number
+of "active" requests.</p>
+<p>Further below you will find more discussion of these topics - first
+follows the reference section detailing the request generator and other
+methods.</p>
+<dl>
+	<dt>eio_req *grp = eio_grp (eio_cb cb, void *data)</dt>
+	<dd>
+		<p>Creates, submits and returns a group request. Note that it doesn't have a
+priority, unlike all other requests.</p>
+	</dd>
+	<dt>eio_grp_add (eio_req *grp, eio_req *req)</dt>
+	<dd>
+		<p>Adds a request to the request group.</p>
+	</dd>
+	<dt>eio_grp_cancel (eio_req *grp)</dt>
+	<dd>
+		<p>Cancels all requests <i>in</i> the group, but <i>not</i> the group request
+itself. You can cancel the group request <i>and</i> all subrequests via a
+normal <code>eio_cancel</code> call.</p>
+	</dd>
+</dl>
+
+</div>
+<h4 id="GROUP_REQUEST_LIFETIME">GROUP REQUEST LIFETIME</h4>
+<div id="GROUP_REQUEST_LIFETIME_CONTENT">
+<p>Left alone, a group request will instantly move to the pending state and
+will be finished at the next call of <code>eio_poll</code>.</p>
+<p>The usefulness stems from the fact that, if a subrequest is added to a
+group <i>before</i> a call to <code>eio_poll</code>, via <code>eio_grp_add</code>, then the group
+will not finish until all the subrequests have finished.</p>
+<p>So the usage cycle of a group request is like this: after it is created,
+you normally instantly add a subrequest. If none is added, the group
+request will finish on it's own. As long as subrequests are added before
+the group request is finished it will be kept from finishing, that is the
+callbacks of any subrequests can, in turn, add more requests to the group,
+and as long as any requests are active, the group request itself will not
+finish.</p>
+
+</div>
+<h4 id="CREATING_COMPOSITE_REQUESTS">CREATING COMPOSITE REQUESTS</h4>
+<div id="CREATING_COMPOSITE_REQUESTS_CONTENT">
+<p>Imagine you wanted to create an <code>eio_load</code> request that opens a file,
+reads it and closes it. This means it has to execute at least three eio
+requests, but for various reasons it might be nice if that request looked
+like any other eio request.</p>
+<p>This can be done with groups:</p>
+<dl>
+	<dt>1) create the request object</dt>
+	<dd>
+		<p>Create a group that contains all further requests. This is the request you
+can return as "the load request".</p>
+	</dd>
+	<dt>2) open the file, maybe</dt>
+	<dd>
+		<p>Next, open the file with <code>eio_open</code> and add the request to the group
+request and you are finished setting up the request.</p>
+		<p>If, for some reason, you cannot <code>eio_open</code> (path is a null ptr?) you
+can set <code>grp-&gt;result</code> to <code>-1</code> to signal an error and let the group
+request finish on its own.</p>
+	</dd>
+	<dt>3) open callback adds more requests</dt>
+	<dd>
+		<p>In the open callback, if the open was not successful, copy <code>req-&gt;errorno</code> to <code>grp-&gt;errorno</code> and set <code>grp-&gt;result</code> to
+<code>-1</code> to signal an error.</p>
+		<p>Otherwise, malloc some memory or so and issue a read request, adding the
+read request to the group.</p>
+	</dd>
+	<dt>4) continue issuing requests till finished</dt>
+	<dd>
+		<p>In the read callback, check for errors and possibly continue with
+<code>eio_close</code> or any other eio request in the same way.</p>
+		<p>As soon as no new requests are added, the group request will finish. Make
+sure you <i>always</i> set <code>grp-&gt;result</code> to some sensible value.</p>
+	</dd>
+</dl>
+
+</div>
+<h4 id="REQUEST_LIMITING">REQUEST LIMITING</h4>
+<div id="REQUEST_LIMITING_CONTENT">
+
+
+
+
+<p>#TODO</p>
+<p>void eio_grp_limit     (eio_req *grp, int limit);</p>
+
+</div>
+<h1 id="LOW_LEVEL_REQUEST_API">LOW LEVEL REQUEST API</h1>
+<div id="LOW_LEVEL_REQUEST_API_CONTENT">
+<p>#TODO</p>
+
+</div>
+<h1 id="ANATOMY_AND_LIFETIME_OF_AN_EIO_REQUE">ANATOMY AND LIFETIME OF AN EIO REQUEST</h1>
+<div id="ANATOMY_AND_LIFETIME_OF_AN_EIO_REQUE-2">
+<p>A request is represented by a structure of type <code>eio_req</code>. To initialise
+it, clear it to all zero bytes:</p>
+<pre>  eio_req req;
+
+  memset (&amp;req, 0, sizeof (req));
+
+</pre>
+<p>A more common way to initialise a new <code>eio_req</code> is to use <code>calloc</code>:</p>
+<pre>  eio_req *req = calloc (1, sizeof (*req));
+
+</pre>
+<p>In either case, libeio neither allocates, initialises or frees the
+<code>eio_req</code> structure for you - it merely uses it.</p>
+<p>zero</p>
+<p>#TODO</p>
+
+</div>
+<h2 id="CONFIGURATION">CONFIGURATION</h2>
+<div id="CONFIGURATION_CONTENT">
+<p>The functions in this section can sometimes be useful, but the default
+configuration will do in most case, so you should skip this section on
+first reading.</p>
+<dl>
+	<dt>eio_set_max_poll_time (eio_tstamp nseconds)</dt>
+	<dd>
+		<p>This causes <code>eio_poll ()</code> to return after it has detected that it was
+running for <code>nsecond</code> seconds or longer (this number can be fractional).</p>
+		<p>This can be used to limit the amount of time spent handling eio requests,
+for example, in interactive programs, you might want to limit this time to
+<code>0.01</code> seconds or so.</p>
+		<p>Note that:</p>
+		<p>
+			</p><dl>
+				<dt>a) libeio doesn't know how long your request callbacks take, so the
+time spent in <code>eio_poll</code> is up to one callback invocation longer then
+this interval.</dt>
+				<dt>b) this is implemented by calling <code>gettimeofday</code> after each
+request, which can be costly.</dt>
+				<dt>c) at least one request will be handled.</dt>
+			</dl>
+		<p></p>
+	</dd>
+	<dt>eio_set_max_poll_reqs (unsigned int nreqs)</dt>
+	<dd>
+		<p>When <code>nreqs</code> is non-zero, then <code>eio_poll</code> will not handle more than
+<code>nreqs</code> requests per invocation. This is a less costly way to limit the
+amount of work done by <code>eio_poll</code> then setting a time limit.</p>
+		<p>If you know your callbacks are generally fast, you could use this to
+encourage interactiveness in your programs by setting it to <code>10</code>, <code>100</code>
+or even <code>1000</code>.</p>
+	</dd>
+	<dt>eio_set_min_parallel (unsigned int nthreads)</dt>
+	<dd>
+		<p>Make sure libeio can handle at least this many requests in parallel. It
+might be able handle more.</p>
+	</dd>
+	<dt>eio_set_max_parallel (unsigned int nthreads)</dt>
+	<dd>
+		<p>Set the maximum number of threads that libeio will spawn.</p>
+	</dd>
+	<dt>eio_set_max_idle (unsigned int nthreads)</dt>
+	<dd>
+		<p>Libeio uses threads internally to handle most requests, and will start and stop threads on demand.</p>
+		<p>This call can be used to limit the number of idle threads (threads without
+work to do): libeio will keep some threads idle in preparation for more
+requests, but never longer than <code>nthreads</code> threads.</p>
+		<p>In addition to this, libeio will also stop threads when they are idle for
+a few seconds, regardless of this setting.</p>
+	</dd>
+	<dt>unsigned int eio_nthreads ()</dt>
+	<dd>
+		<p>Return the number of worker threads currently running.</p>
+	</dd>
+	<dt>unsigned int eio_nreqs ()</dt>
+	<dd>
+		<p>Return the number of requests currently handled by libeio. This is the
+total number of requests that have been submitted to libeio, but not yet
+destroyed.</p>
+	</dd>
+	<dt>unsigned int eio_nready ()</dt>
+	<dd>
+		<p>Returns the number of ready requests, i.e. requests that have been
+submitted but have not yet entered the execution phase.</p>
+	</dd>
+	<dt>unsigned int eio_npending ()</dt>
+	<dd>
+		<p>Returns the number of pending requests, i.e. requests that have been
+executed and have results, but have not been finished yet by a call to
+<code>eio_poll</code>).</p>
+	</dd>
+</dl>
+
+</div>
+<h1 id="EMBEDDING">EMBEDDING</h1>
+<div id="EMBEDDING_CONTENT">
+<p>Libeio can be embedded directly into programs. This functionality is not
+documented and not (yet) officially supported.</p>
+<p>Note that, when including <code>libeio.m4</code>, you are responsible for defining
+the compilation environment (<code>_LARGEFILE_SOURCE</code>, <code>_GNU_SOURCE</code> etc.).</p>
+<p>If you need to know how, check the <code>IO::AIO</code> perl module, which does
+exactly that.</p>
+
+</div>
+<h1 id="COMPILETIME_CONFIGURATION">COMPILETIME CONFIGURATION</h1>
+<div id="COMPILETIME_CONFIGURATION_CONTENT">
+<p>These symbols, if used, must be defined when compiling <cite>eio.c</cite>.</p>
+<dl>
+	<dt>EIO_STACKSIZE</dt>
+	<dd>
+		<p>This symbol governs the stack size for each eio thread. Libeio itself
+was written to use very little stackspace, but when using <code>EIO_CUSTOM</code>
+requests, you might want to increase this.</p>
+		<p>If this symbol is undefined (the default) then libeio will use its default
+stack size (<code>sizeof (void *) * 4096</code> currently). In all other cases, the
+value must be an expression that evaluates to the desired stack size.</p>
+	</dd>
+</dl>
+
+</div>
+<h1 id="PORTABILITY_REQUIREMENTS">PORTABILITY REQUIREMENTS</h1>
+<div id="PORTABILITY_REQUIREMENTS_CONTENT">
+<p>In addition to a working ISO-C implementation, libeio relies on a few
+additional extensions:</p>
+<dl>
+	<dt>POSIX threads</dt>
+	<dd>
+		<p>To be portable, this module uses threads, specifically, the POSIX threads
+library must be available (and working, which partially excludes many xBSD
+systems, where <code>fork ()</code> is buggy).</p>
+	</dd>
+	<dt>POSIX-compatible filesystem API</dt>
+	<dd>
+		<p>This is actually a harder portability requirement: The libeio API is quite
+demanding regarding POSIX API calls (symlinks, user/group management
+etc.).</p>
+	</dd>
+	<dt><code>double</code> must hold a time value in seconds with enough accuracy</dt>
+	<dd>
+		<p>The type <code>double</code> is used to represent timestamps. It is required to
+have at least 51 bits of mantissa (and 9 bits of exponent), which is good
+enough for at least into the year 4000. This requirement is fulfilled by
+implementations implementing IEEE 754 (basically all existing ones).</p>
+	</dd>
+</dl>
+<p>If you know of other additional requirements drop me a note.</p>
+
+</div>
+<h1 id="AUTHOR">AUTHOR</h1>
+<div id="AUTHOR_CONTENT">
+<p>Marc Lehmann &lt;libeio@schmorp.de&gt;.</p>
+
+</div>
+</div>
+
+
+<div><div id="lb_infobar_5168166309" _lego="translate"><div id="lb_infobar_icon_5168166309" style="background-image: url(&quot;chrome-extension://dehbijahfabddfbolechpnlgoblcgpie/images/tip.png&quot;) !important;"></div><span id="lb_infobar_notice_5168166309">此网站为英文页面, 是否需要翻译?</span><input id="lb_infobar_return_5168166309" style="display:none" type="button" value="恢复原文"><input id="lb_infobar_translate_5168166309" type="button" value="翻译网页"><input id="lb_infobar_words_5168166309" class="lb_infobar_btn_inactive_5168166309" type="button" value="鼠标悬停翻译"><span id="lb_infobar_powered_5168166309" style="display:none">powered by youdao</span><div id="lb_infobar_close_5168166309">×</div><a id="lb_infobar_ignore_5168166309" href="http://pod.tst.eu/http://cvs.schmorp.de/libeio/eio.pod#">不再翻译此网站</a><a id="lb_infobar_manual_5168166309" href="http://f.youdao.com/?vendor=liebao" target="_blank">人工翻译</a></div><div id="lb_infobar_hover_5168166309" style="display:none"></div></div></body></html>
